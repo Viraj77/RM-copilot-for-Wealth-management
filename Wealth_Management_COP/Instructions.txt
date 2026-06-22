@@ -1,0 +1,16 @@
+Instructions
+
+1) Open code folder in vscode
+
+with SRC folder,
+
+update openai_api_key in .env.template , line number 5
+update openai_api_key in config.py , line number 14
+
+2) open terminal and execute below
+3) py -m venv .venv
+4) .\.venv\Scripts\Activate.ps1
+5) pip install -r requirements.txt
+
+6) streamlit run app.py
+

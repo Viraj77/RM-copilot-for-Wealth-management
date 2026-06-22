@@ -1,0 +1,45 @@
+
+COMPLIANCE AND SUITABILITY POLICY
+
+1. SUITABILITY RULES
+1.1 Conservative Risk Profile
+- Maximum equity allocation: 40%
+- Minimum bond allocation: 50%
+- Maximum volatility (std dev): 8% annually
+- Restricted products: Emerging Markets, Derivatives
+
+1.2 Balanced Risk Profile
+- Equity allocation: 50-60%
+- Bond allocation: 30-40%
+- Maximum volatility: 12% annually
+- Allowed products: All standard funds
+
+1.3 Growth Risk Profile
+- Equity allocation: 70-80%
+- Bond allocation: 10-20%
+- Maximum volatility: 15% annually
+- Allowed products: All including sector-specific
+
+1.4 Aggressive Risk Profile
+- Equity allocation: 85-100%
+- Bond allocation: 0-15%
+- No volatility limits
+- All products allowed
+
+2. COMPLIANCE GATES
+2.1 Portfolio Concentration
+- Single holding: Maximum 10% of portfolio
+- Single sector: Maximum 25% of portfolio
+
+2.2 Liquidity Requirements
+- Maintain minimum 5% in liquid assets for conservative profiles
+- Maintain minimum 2% in liquid assets for aggressive profiles
+
+2.3 Rebalancing Policy
+- Quarterly rebalancing for conservative to balanced
+- Bi-annual for growth to aggressive
+
+3. ESCALATION RULES
+- Recommendations violating suitability rules require manager review
+- Deviations from policy require compliance sign-off
+- Licensed advice required for complex products
