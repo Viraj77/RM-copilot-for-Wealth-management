@@ -1,0 +1,6 @@
+query,num_results,top_score,avg_score,doc_types
+conservative investor suitability,3,0.879988,0.86049134,"['product', 'product', 'policy']"
+portfolio risk assessment,3,0.89616346,0.8920345,"['product', 'product', 'product']"
+equity allocation recommendations,3,0.87550324,0.86679554,"['policy', 'policy', 'policy']"
+compliance checks,3,0.99898505,0.99607915,"['research', 'research', 'product']"
+market research and outlook,3,1.0845262,1.0711218,"['policy', 'product', 'product']"

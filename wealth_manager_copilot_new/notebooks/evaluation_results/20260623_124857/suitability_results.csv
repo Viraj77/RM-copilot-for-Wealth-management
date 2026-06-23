@@ -1,0 +1,4 @@
+test_case,risk_profile,recommendation,predicted_suitable,expected_suitable,correct,violations,policy_citations
+1,Conservative,Increase equity allocation,True,False,False,0,6
+2,Balanced,Diversified equity fund,True,True,True,0,6
+3,Aggressive,Tech sector overweight,True,True,True,0,6

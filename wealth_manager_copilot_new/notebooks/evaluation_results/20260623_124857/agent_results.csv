@@ -1,0 +1,5 @@
+query_id,status,client_id,num_recommendations,num_talking_points,compliance_status,escalated_items,citations_count,avg_confidence,grounded_by_llm
+GQ-001,success,C-204,3,3,Cleared,0,5,0.7999999999999999,True
+GQ-002,success,C-202,2,2,Cleared,0,4,0.875,True
+GQ-003,success,C-204,2,2,Cleared,0,3,0.8,True
+GQ-004,success,C-201,3,3,Cleared,0,5,0.8333333333333334,True

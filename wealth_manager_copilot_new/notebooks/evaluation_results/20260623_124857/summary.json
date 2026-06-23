@@ -1,0 +1,22 @@
+{
+  "Retrieval Metrics": {
+    "Total Documents Indexed": 816,
+    "Average Retrieval Score": "0.937",
+    "Total Documents Retrieved": "15",
+    "Average Results per Query": "3.0"
+  },
+  "Suitability Gate Metrics": {
+    "Precision": "66.7%",
+    "Total Violations Detected": "0"
+  },
+  "Agent Performance": {
+    "Successful Queries": "4/4",
+    "Average Recommendations": "2.5",
+    "Total Citations Generated": "17"
+  },
+  "Recommendation Groundedness": {
+    "Average Citations per Recommendation": "1.71",
+    "Average Confidence Score": "0.827",
+    "Compliance Pass Rate": "100.0%"
+  }
+}

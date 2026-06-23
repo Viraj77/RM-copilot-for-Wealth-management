@@ -1,0 +1,36 @@
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Environment variables
+.env
+
+# Vector store data
+data/vector_store/
+data/user_uploads/
+
+# Logs
+logs/
+*.log
+
+# Jupyter
+.ipynb_checkpoints/
+notebooks/.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
