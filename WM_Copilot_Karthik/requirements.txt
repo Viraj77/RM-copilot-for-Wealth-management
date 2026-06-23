@@ -1,0 +1,14 @@
+langchain
+langchain-community
+langchain-openai
+langgraph
+chromadb
+pypdf
+python-docx
+pandas
+pydantic
+streamlit
+python-dotenv
+pytest
+jinja2
+altair
