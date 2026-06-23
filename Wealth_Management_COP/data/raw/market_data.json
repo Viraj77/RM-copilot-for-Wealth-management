@@ -1,0 +1,270 @@
+{
+  "market_data": {
+    "VTI": {
+      "name": "Vanguard Total Stock Market ETF",
+      "current_price": 248.32,
+      "returns": {
+        "1W": 0.82,
+        "1M": 2.15,
+        "3M": 5.43,
+        "6M": 9.12,
+        "1Y": 12.34
+      },
+      "volatility_annualised": 14.2,
+      "52w_high": 258.10,
+      "52w_low": 208.44,
+      "sector": "Broad U.S. Equity",
+      "asset_class": "equity",
+      "expense_ratio": 0.03,
+      "dividend_yield": 1.35
+    },
+    "QQQ": {
+      "name": "Invesco QQQ Trust (Nasdaq-100)",
+      "current_price": 491.87,
+      "returns": {
+        "1W": 1.32,
+        "1M": 3.21,
+        "3M": 8.76,
+        "6M": 14.22,
+        "1Y": 18.74
+      },
+      "volatility_annualised": 19.8,
+      "52w_high": 510.25,
+      "52w_low": 388.12,
+      "sector": "Technology",
+      "asset_class": "equity",
+      "expense_ratio": 0.20,
+      "dividend_yield": 0.55
+    },
+    "AGG": {
+      "name": "iShares Core U.S. Aggregate Bond ETF",
+      "current_price": 96.41,
+      "returns": {
+        "1W": -0.12,
+        "1M": 0.45,
+        "3M": 1.02,
+        "6M": -0.88,
+        "1Y": -2.10
+      },
+      "volatility_annualised": 5.3,
+      "52w_high": 99.82,
+      "52w_low": 93.15,
+      "sector": "Investment Grade Bonds",
+      "asset_class": "fixed_income",
+      "expense_ratio": 0.04,
+      "dividend_yield": 4.62,
+      "duration_years": 6.2,
+      "credit_quality": "AA"
+    },
+    "BND": {
+      "name": "Vanguard Total Bond Market ETF",
+      "current_price": 73.28,
+      "returns": {
+        "1W": -0.10,
+        "1M": 0.38,
+        "3M": 0.95,
+        "6M": -0.92,
+        "1Y": -1.52
+      },
+      "volatility_annualised": 5.1,
+      "52w_high": 76.44,
+      "52w_low": 71.10,
+      "sector": "Investment Grade Bonds",
+      "asset_class": "fixed_income",
+      "expense_ratio": 0.04,
+      "dividend_yield": 4.52,
+      "duration_years": 6.5,
+      "credit_quality": "AA"
+    },
+    "TIPS": {
+      "name": "iShares TIPS Bond ETF",
+      "current_price": 108.95,
+      "returns": {
+        "1W": 0.05,
+        "1M": 0.22,
+        "3M": 0.65,
+        "6M": 0.20,
+        "1Y": 0.48
+      },
+      "volatility_annualised": 4.8,
+      "52w_high": 111.20,
+      "52w_low": 105.33,
+      "sector": "U.S. Government TIPS",
+      "asset_class": "fixed_income",
+      "expense_ratio": 0.05,
+      "dividend_yield": 5.15,
+      "duration_years": 7.1,
+      "inflation_linked": true,
+      "credit_quality": "AAA"
+    },
+    "REET": {
+      "name": "iShares Global REIT ETF",
+      "current_price": 24.18,
+      "returns": {
+        "1W": 0.45,
+        "1M": 1.82,
+        "3M": 3.44,
+        "6M": 4.11,
+        "1Y": 5.22
+      },
+      "volatility_annualised": 13.5,
+      "52w_high": 25.88,
+      "52w_low": 20.44,
+      "sector": "Global Real Estate",
+      "asset_class": "real_estate",
+      "expense_ratio": 0.12,
+      "dividend_yield": 3.82
+    },
+    "VYM": {
+      "name": "Vanguard High Dividend Yield ETF",
+      "current_price": 128.44,
+      "returns": {
+        "1W": 0.32,
+        "1M": 1.12,
+        "3M": 3.25,
+        "6M": 5.10,
+        "1Y": 6.22
+      },
+      "volatility_annualised": 11.2,
+      "52w_high": 133.10,
+      "52w_low": 114.55,
+      "sector": "Dividend Equity",
+      "asset_class": "equity",
+      "expense_ratio": 0.08,
+      "dividend_yield": 2.92
+    },
+    "ARKK": {
+      "name": "ARK Innovation ETF",
+      "current_price": 45.22,
+      "returns": {
+        "1W": -1.88,
+        "1M": -3.44,
+        "3M": -7.12,
+        "6M": -11.55,
+        "1Y": -8.52
+      },
+      "volatility_annualised": 48.5,
+      "52w_high": 62.10,
+      "52w_low": 38.22,
+      "sector": "Disruptive Innovation / Technology",
+      "asset_class": "equity",
+      "expense_ratio": 0.75,
+      "dividend_yield": 0.0,
+      "note": "High concentration in speculative growth companies. Extreme volatility."
+    },
+    "TSLA": {
+      "name": "Tesla Inc.",
+      "current_price": 198.55,
+      "returns": {
+        "1W": 2.44,
+        "1M": 6.12,
+        "3M": 15.88,
+        "6M": 24.32,
+        "1Y": 32.10
+      },
+      "volatility_annualised": 52.3,
+      "52w_high": 218.90,
+      "52w_low": 138.55,
+      "sector": "Consumer Discretionary / EV",
+      "asset_class": "equity",
+      "expense_ratio": null,
+      "dividend_yield": 0.0,
+      "note": "Individual stock. Very high volatility. Suitable for Aggressive clients only."
+    },
+    "VWO": {
+      "name": "Vanguard FTSE Emerging Markets ETF",
+      "current_price": 44.15,
+      "returns": {
+        "1W": 0.55,
+        "1M": 1.88,
+        "3M": 3.45,
+        "6M": 4.88,
+        "1Y": 5.62
+      },
+      "volatility_annualised": 17.8,
+      "52w_high": 47.22,
+      "52w_low": 37.88,
+      "sector": "Emerging Markets Equity",
+      "asset_class": "equity",
+      "expense_ratio": 0.08,
+      "dividend_yield": 3.10,
+      "note": "Emerging markets only. Not suitable for Conservative or Balanced clients per current policy."
+    },
+    "HYG": {
+      "name": "iShares iBoxx High Yield Corporate Bond ETF",
+      "current_price": 76.88,
+      "returns": {
+        "1W": 0.15,
+        "1M": 0.55,
+        "3M": 1.45,
+        "6M": 2.22,
+        "1Y": 4.18
+      },
+      "volatility_annualised": 7.8,
+      "52w_high": 79.22,
+      "52w_low": 71.44,
+      "sector": "High Yield Bonds",
+      "asset_class": "fixed_income",
+      "expense_ratio": 0.49,
+      "dividend_yield": 6.85,
+      "credit_quality": "BB",
+      "note": "Sub-investment grade. NOT suitable for Conservative or Balanced clients."
+    },
+    "VXUS": {
+      "name": "Vanguard Total International Stock ETF",
+      "current_price": 63.44,
+      "returns": {
+        "1W": 0.44,
+        "1M": 1.55,
+        "3M": 4.22,
+        "6M": 6.45,
+        "1Y": 7.78
+      },
+      "volatility_annualised": 14.5,
+      "52w_high": 66.88,
+      "52w_low": 54.22,
+      "sector": "International Developed + Emerging Equity",
+      "asset_class": "equity",
+      "expense_ratio": 0.08,
+      "dividend_yield": 2.88
+    },
+    "SCHD": {
+      "name": "Schwab U.S. Dividend Equity ETF",
+      "current_price": 82.15,
+      "returns": {
+        "1W": 0.22,
+        "1M": 0.98,
+        "3M": 2.88,
+        "6M": 4.44,
+        "1Y": 4.82
+      },
+      "volatility_annualised": 10.8,
+      "52w_high": 86.10,
+      "52w_low": 73.55,
+      "sector": "Dividend Equity",
+      "asset_class": "equity",
+      "expense_ratio": 0.06,
+      "dividend_yield": 3.45
+    },
+    "CASH": {
+      "name": "Money Market / Cash",
+      "current_price": 1.0,
+      "returns": {
+        "1W": 0.10,
+        "1M": 0.42,
+        "3M": 1.25,
+        "6M": 2.50,
+        "1Y": 5.10
+      },
+      "volatility_annualised": 0.0,
+      "asset_class": "cash",
+      "current_yield": 5.10,
+      "note": "Money market yield as of Q2 2026"
+    }
+  },
+  "metadata": {
+    "last_updated": "2026-06-15",
+    "source": "Simulated market data for demonstration purposes",
+    "disclaimer": "This data is synthetic and for educational/demonstration use only."
+  }
+}

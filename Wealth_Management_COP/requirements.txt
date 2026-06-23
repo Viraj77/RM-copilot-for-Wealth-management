@@ -1,24 +1,44 @@
-python-dotenv
-openai
-langchain
-langchain-openai
-langchain-community
-langgraph
-chromadb
-faiss-cpu
-pydantic
-pydantic-settings
-streamlit
-jupyter
-notebook
-pandas
-numpy
-matplotlib
-seaborn
-scikit-learn
-langsmith
-ragas
-pypdf
-python-docx
-unstructured
-tiktoken
+# Core LLM & LangChain
+openai>=1.30.0
+langchain>=0.2.0
+langchain-openai>=0.1.0
+langchain-community>=0.2.0
+langgraph>=0.1.0
+
+# Vector Stores
+chromadb>=0.4.0
+faiss-cpu>=1.7.0
+
+# RAG Enhancement (Phase 8)
+rank-bm25>=0.2.2                  # BM25 keyword search for hybrid retrieval
+sentence-transformers>=2.2.0      # Cross-encoder reranking (optional — install separately if needed)
+
+# Data Models & Config
+pydantic>=2.0.0
+pydantic-settings>=2.0.0
+
+# Document Processing
+pypdf>=3.0.0
+docx2txt>=0.8
+unstructured>=0.10.0
+
+# Frontend
+streamlit>=1.30.0
+plotly>=5.0.0
+
+# Evaluation
+ragas>=0.1.0
+datasets>=2.0.0
+
+# Tracing & Observability
+langsmith>=0.1.0
+
+# Utilities
+python-dotenv>=1.0.0
+rich>=13.0.0
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Testing
+pytest>=7.0.0
+pytest-asyncio>=0.21.0

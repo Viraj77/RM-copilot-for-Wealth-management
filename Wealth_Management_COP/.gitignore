@@ -1,36 +1,29 @@
-# Virtual environment
-.venv/
-venv/
-env/
-
-# Python
+.env
 __pycache__/
 *.py[cod]
-*.pyo
-*.pyd
+*$py.class
 *.egg-info/
 dist/
 build/
 .eggs/
-
-# Environment variables
-.env
+*.egg
 
 # Vector store data
-data/vector_store/
-data/user_uploads/
-
-# Logs
-logs/
-*.log
+data/chroma_db/
+data/faiss_index/
 
 # Jupyter
 .ipynb_checkpoints/
-notebooks/.ipynb_checkpoints/
+
+# IDE
+.vscode/
+.idea/
+*.swp
 
 # OS
 .DS_Store
 Thumbs.db
 
-# VS Code
-.vscode/
+# Logs
+*.log
+logs/

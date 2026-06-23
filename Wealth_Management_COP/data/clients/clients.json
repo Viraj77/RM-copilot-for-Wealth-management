@@ -1,0 +1,349 @@
+{
+  "clients": [
+    {
+      "client_id": "C-204",
+      "name": "Sarah Chen",
+      "risk_profile": "balanced",
+      "investment_horizon": "7-10 years",
+      "total_aum": 2400000.0,
+      "entitlement_tier": "premium",
+      "rm_id": "RM-001",
+      "last_review_date": "2026-03-15",
+      "notes": "Long-term wealth preservation focus. Interested in ESG. Prefers quarterly reviews.",
+      "holdings": [
+        {
+          "ticker": "VTI",
+          "name": "Vanguard Total Stock Market ETF",
+          "asset_class": "equity",
+          "allocation_pct": 35.0,
+          "current_value": 840000.0,
+          "gain_loss_pct": 12.3,
+          "sector": "Broad Market",
+          "currency": "USD"
+        },
+        {
+          "ticker": "QQQ",
+          "name": "Invesco QQQ Trust (Nasdaq-100)",
+          "asset_class": "equity",
+          "allocation_pct": 15.0,
+          "current_value": 360000.0,
+          "gain_loss_pct": 18.7,
+          "sector": "Technology",
+          "currency": "USD"
+        },
+        {
+          "ticker": "AGG",
+          "name": "iShares Core U.S. Aggregate Bond ETF",
+          "asset_class": "fixed_income",
+          "allocation_pct": 20.0,
+          "current_value": 480000.0,
+          "gain_loss_pct": -2.1,
+          "sector": null,
+          "currency": "USD"
+        },
+        {
+          "ticker": "BND",
+          "name": "Vanguard Total Bond Market ETF",
+          "asset_class": "fixed_income",
+          "allocation_pct": 10.0,
+          "current_value": 240000.0,
+          "gain_loss_pct": -1.5,
+          "sector": null,
+          "currency": "USD"
+        },
+        {
+          "ticker": "REET",
+          "name": "iShares Global REIT ETF",
+          "asset_class": "real_estate",
+          "allocation_pct": 10.0,
+          "current_value": 240000.0,
+          "gain_loss_pct": 5.2,
+          "sector": "Real Estate",
+          "currency": "USD"
+        },
+        {
+          "ticker": "VGSLX",
+          "name": "Vanguard Real Estate Index Fund",
+          "asset_class": "alternatives",
+          "allocation_pct": 5.0,
+          "current_value": 120000.0,
+          "gain_loss_pct": 3.8,
+          "sector": "Alternatives",
+          "currency": "USD"
+        },
+        {
+          "ticker": "CASH",
+          "name": "Money Market / Cash",
+          "asset_class": "cash",
+          "allocation_pct": 5.0,
+          "current_value": 120000.0,
+          "gain_loss_pct": 0.0,
+          "sector": null,
+          "currency": "USD"
+        }
+      ]
+    },
+    {
+      "client_id": "C-301",
+      "name": "James Rodriguez",
+      "risk_profile": "aggressive",
+      "investment_horizon": "10-15 years",
+      "total_aum": 5100000.0,
+      "entitlement_tier": "institutional",
+      "rm_id": "RM-002",
+      "last_review_date": "2026-04-20",
+      "notes": "High-risk appetite. Active in tech and emerging markets. Likes concentrated bets.",
+      "holdings": [
+        {
+          "ticker": "ARKK",
+          "name": "ARK Innovation ETF",
+          "asset_class": "equity",
+          "allocation_pct": 25.0,
+          "current_value": 1275000.0,
+          "gain_loss_pct": -8.5,
+          "sector": "Disruptive Innovation",
+          "currency": "USD"
+        },
+        {
+          "ticker": "TSLA",
+          "name": "Tesla Inc.",
+          "asset_class": "equity",
+          "allocation_pct": 20.0,
+          "current_value": 1020000.0,
+          "gain_loss_pct": 32.1,
+          "sector": "Consumer Discretionary / EV",
+          "currency": "USD"
+        },
+        {
+          "ticker": "VWO",
+          "name": "Vanguard FTSE Emerging Markets ETF",
+          "asset_class": "equity",
+          "allocation_pct": 20.0,
+          "current_value": 1020000.0,
+          "gain_loss_pct": 5.6,
+          "sector": "Emerging Markets",
+          "currency": "USD"
+        },
+        {
+          "ticker": "QQQ",
+          "name": "Invesco QQQ Trust",
+          "asset_class": "equity",
+          "allocation_pct": 15.0,
+          "current_value": 765000.0,
+          "gain_loss_pct": 18.7,
+          "sector": "Technology",
+          "currency": "USD"
+        },
+        {
+          "ticker": "HYG",
+          "name": "iShares iBoxx High Yield Corporate Bond ETF",
+          "asset_class": "fixed_income",
+          "allocation_pct": 10.0,
+          "current_value": 510000.0,
+          "gain_loss_pct": 1.2,
+          "sector": null,
+          "currency": "USD"
+        },
+        {
+          "ticker": "ALT-FUND",
+          "name": "Global Macro Alternatives Fund",
+          "asset_class": "alternatives",
+          "allocation_pct": 10.0,
+          "current_value": 510000.0,
+          "gain_loss_pct": 7.4,
+          "sector": "Alternatives",
+          "currency": "USD"
+        }
+      ]
+    },
+    {
+      "client_id": "C-115",
+      "name": "Margaret Thompson",
+      "risk_profile": "conservative",
+      "investment_horizon": "3-5 years",
+      "total_aum": 1200000.0,
+      "entitlement_tier": "standard",
+      "rm_id": "RM-001",
+      "last_review_date": "2026-02-10",
+      "notes": "Approaching retirement. Capital preservation priority. Very risk averse. Dislikes volatility.",
+      "holdings": [
+        {
+          "ticker": "VBTLX",
+          "name": "Vanguard Total Bond Market Index Fund",
+          "asset_class": "fixed_income",
+          "allocation_pct": 40.0,
+          "current_value": 480000.0,
+          "gain_loss_pct": -1.8,
+          "sector": null,
+          "currency": "USD"
+        },
+        {
+          "ticker": "TIPS",
+          "name": "iShares TIPS Bond ETF",
+          "asset_class": "fixed_income",
+          "allocation_pct": 20.0,
+          "current_value": 240000.0,
+          "gain_loss_pct": 0.5,
+          "sector": null,
+          "currency": "USD"
+        },
+        {
+          "ticker": "VYM",
+          "name": "Vanguard High Dividend Yield ETF",
+          "asset_class": "equity",
+          "allocation_pct": 15.0,
+          "current_value": 180000.0,
+          "gain_loss_pct": 6.2,
+          "sector": "Dividend Equity",
+          "currency": "USD"
+        },
+        {
+          "ticker": "SCHD",
+          "name": "Schwab U.S. Dividend Equity ETF",
+          "asset_class": "equity",
+          "allocation_pct": 5.0,
+          "current_value": 60000.0,
+          "gain_loss_pct": 4.8,
+          "sector": "Dividend Equity",
+          "currency": "USD"
+        },
+        {
+          "ticker": "CASH",
+          "name": "Money Market / Cash",
+          "asset_class": "cash",
+          "allocation_pct": 20.0,
+          "current_value": 240000.0,
+          "gain_loss_pct": 0.0,
+          "sector": null,
+          "currency": "USD"
+        }
+      ]
+    },
+    {
+      "client_id": "C-442",
+      "name": "Raj Patel",
+      "risk_profile": "growth",
+      "investment_horizon": "10-15 years",
+      "total_aum": 3800000.0,
+      "entitlement_tier": "premium",
+      "rm_id": "RM-003",
+      "last_review_date": "2026-05-01",
+      "notes": "Business owner. Interested in diversifying beyond domestic equity. Open to alternatives.",
+      "holdings": [
+        {
+          "ticker": "VTI",
+          "name": "Vanguard Total Stock Market ETF",
+          "asset_class": "equity",
+          "allocation_pct": 30.0,
+          "current_value": 1140000.0,
+          "gain_loss_pct": 12.3,
+          "sector": "Broad Market",
+          "currency": "USD"
+        },
+        {
+          "ticker": "VXUS",
+          "name": "Vanguard Total International Stock ETF",
+          "asset_class": "equity",
+          "allocation_pct": 25.0,
+          "current_value": 950000.0,
+          "gain_loss_pct": 7.8,
+          "sector": "International Equity",
+          "currency": "USD"
+        },
+        {
+          "ticker": "VWO",
+          "name": "Vanguard FTSE Emerging Markets ETF",
+          "asset_class": "equity",
+          "allocation_pct": 15.0,
+          "current_value": 570000.0,
+          "gain_loss_pct": 5.6,
+          "sector": "Emerging Markets",
+          "currency": "USD"
+        },
+        {
+          "ticker": "BND",
+          "name": "Vanguard Total Bond Market ETF",
+          "asset_class": "fixed_income",
+          "allocation_pct": 20.0,
+          "current_value": 760000.0,
+          "gain_loss_pct": -1.5,
+          "sector": null,
+          "currency": "USD"
+        },
+        {
+          "ticker": "REET",
+          "name": "iShares Global REIT ETF",
+          "asset_class": "real_estate",
+          "allocation_pct": 10.0,
+          "current_value": 380000.0,
+          "gain_loss_pct": 5.2,
+          "sector": "Real Estate",
+          "currency": "USD"
+        }
+      ]
+    },
+    {
+      "client_id": "C-510",
+      "name": "Emily Nakamura",
+      "risk_profile": "balanced",
+      "investment_horizon": "5-7 years",
+      "total_aum": 800000.0,
+      "entitlement_tier": "standard",
+      "rm_id": "RM-002",
+      "last_review_date": "2026-01-22",
+      "notes": "Young professional, first major investment portfolio. Education goal in 5 years. Needs liquidity.",
+      "holdings": [
+        {
+          "ticker": "VTI",
+          "name": "Vanguard Total Stock Market ETF",
+          "asset_class": "equity",
+          "allocation_pct": 35.0,
+          "current_value": 280000.0,
+          "gain_loss_pct": 12.3,
+          "sector": "Broad Market",
+          "currency": "USD"
+        },
+        {
+          "ticker": "VXUS",
+          "name": "Vanguard Total International Stock ETF",
+          "asset_class": "equity",
+          "allocation_pct": 15.0,
+          "current_value": 120000.0,
+          "gain_loss_pct": 7.8,
+          "sector": "International Equity",
+          "currency": "USD"
+        },
+        {
+          "ticker": "AGG",
+          "name": "iShares Core U.S. Aggregate Bond ETF",
+          "asset_class": "fixed_income",
+          "allocation_pct": 30.0,
+          "current_value": 240000.0,
+          "gain_loss_pct": -2.1,
+          "sector": null,
+          "currency": "USD"
+        },
+        {
+          "ticker": "BND",
+          "name": "Vanguard Total Bond Market ETF",
+          "asset_class": "fixed_income",
+          "allocation_pct": 10.0,
+          "current_value": 80000.0,
+          "gain_loss_pct": -1.5,
+          "sector": null,
+          "currency": "USD"
+        },
+        {
+          "ticker": "CASH",
+          "name": "Money Market / Cash",
+          "asset_class": "cash",
+          "allocation_pct": 10.0,
+          "current_value": 80000.0,
+          "gain_loss_pct": 0.0,
+          "sector": null,
+          "currency": "USD"
+        }
+      ]
+    }
+  ]
+}
