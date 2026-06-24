@@ -1,0 +1,32 @@
+[
+  
+  {
+    "query": "Show best performing bond funds",
+    "intent": "product",
+    "expected_behavior": "bond_fund_recommendation"
+  },
+
+  {
+    "query": "Compare equity and fixed income outlook",
+    "intent": "research",
+    "expected_behavior": "market_comparison"
+  },
+
+  {
+    "query": "Is Fund XYZ suitable for conservative investors?",
+    "intent": "compliance",
+    "expected_behavior": "suitability_check"
+  },
+
+  {
+    "query": "Should client invest entire retirement savings into equities?",
+    "intent": "human_review",
+    "expected_behavior": "escalation"
+  },
+
+  {
+    "query": "Who won IPL?",
+    "intent": "outside_context",
+    "expected_behavior": "domain_rejection"
+  }
+]
