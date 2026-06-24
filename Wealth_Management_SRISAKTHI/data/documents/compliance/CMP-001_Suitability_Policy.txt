@@ -1,0 +1,29 @@
+=============================================================
+COMPLIANCE POLICY
+Document ID: CMP-001
+Title: Firm Suitability & Investment Recommendation Policy
+Effective Date: 2026-01-01
+Sensitivity: Internal
+Entitlement: All RMs
+=============================================================
+
+1. PURPOSE
+Defines suitability requirements for all product recommendations to clients.
+
+2. RISK PROFILE MATRIX
+Conservative: Max 25% equity; prohibited high-volatility products (PG-003/HAEF)
+Balanced: 30-60% equity; max 10% high-volatility satellite
+Growth: 50-80% equity; PG-003 allowed as satellite (max 15%)
+Aggressive: 70-95% equity; PG-003 suitable as core growth holding
+
+3. LICENSED ADVICE BOUNDARIES
+Personalized withdrawal rates, specific trade orders, and tax optimization
+strategies require licensed advisor (Series 7/66) sign-off.
+
+4. CITATION REQUIREMENTS
+Every recommendation must cite product guide (PG-xxx) and applicable policy (CMP-xxx).
+
+5. ESCALATION
+Cross-profile recommendations and blocked products require compliance review.
+
+END OF DOCUMENT — CMP-001

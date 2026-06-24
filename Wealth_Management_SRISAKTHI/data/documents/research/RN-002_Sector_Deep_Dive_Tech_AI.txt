@@ -1,0 +1,585 @@
+=============================================================
+RESEARCH NOTE
+Document ID: RN-002
+Title: Sector Deep Dive — Technology & Applied AI Infrastructure
+Author: Horizon Wealth Research Desk
+Publication Date: 2026-05-18
+Version: 2.0 (Expanded Edition)
+Sensitivity: Internal — RM Use Only (Not for direct client
+distribution without compliance review)
+Entitlement: RMs with Research Tier 2 access or higher
+=============================================================
+
+TABLE OF CONTENTS
+-------------------
+1. Executive Summary
+2. Market Context and Macro Backdrop
+3. Compute & Infrastructure Cohort — Detailed Analysis
+4. Enterprise Software Cohort — Detailed Analysis
+5. AI-Native / Early-Stage Cohort — Risk Commentary
+6. Valuation Observations Across Cohorts
+7. Historical Sector Cycle Comparison (Illustrative)
+8. Supply Chain and Geopolitical Risk Analysis
+9. Energy and Infrastructure Constraints
+10. Regulatory Landscape Overview
+11. Portfolio Construction Implications
+12. Cross-Reference to Approved Product Shelf
+13. Risks to the Thesis — Expanded
+14. Bull Case and Bear Case Scenarios (Illustrative)
+15. Research Desk Conclusion
+16. Glossary of Sector-Specific Terms
+17. Appendix: RM Pre-Approved Discussion Framework
+
+=============================================================
+1. EXECUTIVE SUMMARY
+=============================================================
+
+The technology sector, particularly the applied AI infrastructure
+sub-segment, has continued to outperform broader equity indices
+over the trailing twelve months, though dispersion within the
+sector has widened materially. We see three distinct cohorts:
+(a) compute and infrastructure providers, (b) enterprise software
+companies integrating AI features, and (c) early-stage AI-native
+firms with unproven unit economics. This note focuses primarily on
+cohorts (a) and (b), as cohort (c) carries risk characteristics
+generally unsuitable for Conservative or Balanced client profiles,
+though we provide summary risk commentary on cohort (c) in Section
+5 for completeness.
+
+This expanded edition adds historical cycle comparison, supply
+chain risk analysis, energy infrastructure constraints, and
+illustrative bull/bear scenario framing to support more detailed
+RM client conversations, while maintaining the same core house
+view as the prior edition: constructive but selective.
+
+=============================================================
+2. MARKET CONTEXT AND MACRO BACKDROP
+=============================================================
+
+Global capital expenditure on AI-related data center buildout is
+estimated to have grown substantially year-over-year, with
+hyperscale cloud providers continuing multi-year infrastructure
+commitments. Financing for this buildout has increasingly shifted
+toward structured debt and joint-venture vehicles rather than pure
+equity capex, which the research desk views as a signal of capital
+discipline returning to the sector after a period of aggressive
+balance-sheet expansion.
+
+Broader macro conditions, as detailed in the Q2 2026 Global Market
+Outlook (Document RN-001), remain a relevant backdrop: a more
+balanced growth environment following the Q1 2026 rate volatility
+episode provides a generally supportive, if not unambiguously
+bullish, environment for risk assets including technology equities.
+Interest rate sensitivity remains a relevant consideration for
+long-duration growth equity valuations broadly, and technology
+sector names — given their typically longer-duration cash flow
+profiles — are more sensitive to discount rate assumptions than the
+broader market.
+
+=============================================================
+3. COMPUTE & INFRASTRUCTURE COHORT — DETAILED ANALYSIS
+=============================================================
+
+Companies providing semiconductor design, fabrication capacity,
+and data center hardware have benefited from sustained demand. Key
+considerations for RMs discussing this cohort:
+
+Revenue Concentration Risk: A small number of hyperscale customers
+represent an outsized share of order books for several leading
+firms in this cohort. This concentration means that a strategic
+shift by even one or two major hyperscale buyers — whether due to
+in-housing chip design, a shift to a competing supplier, or a
+pullback in capex plans — could have an outsized impact on affected
+suppliers' near-term revenue trajectories.
+
+Capital Intensity: Fabrication capacity expansion requires
+multi-year lead times, creating potential supply-demand mismatches.
+The research desk notes that the current capacity expansion cycle,
+if it proves larger than ultimately required by end demand, could
+create a multi-year overhang on pricing power for commoditized
+segments of the hardware stack, even as more specialized, harder-
+to-replicate technology segments maintain pricing discipline.
+
+Geopolitical Exposure: Export control regimes affecting advanced
+semiconductor equipment remain a material risk factor for firms
+with cross-border manufacturing dependencies. The desk continues to
+monitor policy developments in this area closely, given the
+potential for sudden regulatory shifts to materially affect
+specific companies' addressable markets with limited advance
+notice.
+
+Capacity Utilization Trends: Leading-edge fabrication capacity has
+generally run at high utilization rates, while legacy-node capacity
+has shown more mixed utilization, reflecting bifurcated demand
+between cutting-edge AI accelerator chips and more commoditized
+semiconductor applications.
+
+Power and Cooling Infrastructure: A growing share of capital
+expenditure within this cohort is being directed toward power
+delivery and cooling infrastructure rather than compute silicon
+itself, reflecting the increasing recognition that power
+availability, not chip supply alone, may become the binding
+constraint on data center buildout over the medium term (see
+Section 9 for further detail).
+
+=============================================================
+4. ENTERPRISE SOFTWARE COHORT — DETAILED ANALYSIS
+=============================================================
+
+Software companies embedding AI capabilities into existing
+enterprise products have shown more moderate but steadier growth
+than infrastructure pure-plays. Margin expansion from AI-feature
+monetization has been uneven; several large vendors have reported
+that AI-specific feature adoption has not yet translated into
+proportionate pricing power.
+
+Monetization Models Observed: The desk has observed three broad
+monetization approaches across the cohort: (i) per-seat pricing
+uplift for AI-enabled tiers, (ii) usage-based consumption pricing
+tied to AI feature utilization, and (iii) bundled inclusion with no
+direct incremental pricing, used by some vendors as a retention and
+differentiation tool rather than a direct monetization lever.
+Vendors using approach (ii) have generally shown the clearest
+near-term revenue linkage to AI feature adoption, while vendors
+using approach (iii) may be making a longer-term strategic bet on
+retention and platform stickiness over immediate monetization.
+
+Customer Adoption Patterns: Enterprise customers have shown
+measured, rather than wholesale, adoption of AI-enabled features,
+often piloting within specific departments or use cases before
+broader rollout. This measured adoption pace has, in the desk's
+view, been a contributing factor to the uneven pricing power
+referenced above, as enterprise procurement processes continue to
+demand demonstrated return on investment before committing to
+broader AI feature licensing.
+
+Competitive Dynamics: The cohort has seen increased competitive
+intensity from both incumbent software vendors expanding into
+AI-native feature sets and new entrants building AI-first
+alternatives to established enterprise software categories. The
+desk views incumbents' large existing customer bases and data
+access as a meaningful, though not insurmountable, competitive
+advantage over pure AI-native challengers in most enterprise
+software categories.
+
+=============================================================
+5. AI-NATIVE / EARLY-STAGE COHORT — RISK COMMENTARY
+=============================================================
+
+This cohort comprises companies whose core business model is
+built natively around AI capabilities, often with limited
+operating history and, in many cases, not-yet-proven unit
+economics at scale. While this cohort has attracted significant
+investor attention and, in some cases, substantial valuation
+premiums, the research desk views this cohort as carrying risk
+characteristics generally unsuitable for Conservative or Balanced
+client profiles, and only selectively appropriate for Growth or
+Aggressive profiles with explicit concentration limit awareness.
+
+Key risk considerations:
+
+Unproven Unit Economics: Many companies in this cohort have not
+yet demonstrated a clear path to sustainable profitability at
+scale, with elevated compute costs relative to revenue in numerous
+cases.
+
+Customer Concentration and Churn: Early-stage AI-native companies
+often exhibit higher customer concentration and, in some cases,
+higher churn rates than more established enterprise software
+peers, reflecting both the nascency of many use cases and intense
+competitive dynamics within the cohort.
+
+Capital Access Dependency: A meaningful share of this cohort
+remains dependent on continued access to private or public capital
+markets to fund operations, creating elevated sensitivity to shifts
+in investor risk appetite.
+
+Given these characteristics, the research desk does not currently
+recommend direct single-name exposure to this cohort for any client
+profile through the standard RM channel; any client interest in
+this cohort should be evaluated through diversified vehicles where
+available on the approved shelf, subject to the standard
+suitability and concentration checks, or escalated per the
+Suitability & Compliance Policy if no appropriate diversified
+vehicle exists.
+
+=============================================================
+6. VALUATION OBSERVATIONS ACROSS COHORTS
+=============================================================
+
+Forward earnings multiples across the broader technology sector
+remain above 10-year historical averages. The research desk's
+internal view is that valuation dispersion, not absolute sector
+valuation, is the primary risk consideration for portfolio
+construction at this time. We do not publish single-stock price
+targets in this note; single-name suitability must be checked
+individually against the Suitability & Compliance Policy.
+
+Across the three cohorts described above, the desk observes the
+widest valuation dispersion, and correspondingly the widest range
+of embedded growth expectations, within the AI-native cohort
+(Section 5), followed by a moderate dispersion within the compute
+and infrastructure cohort (Section 3), with the enterprise software
+cohort (Section 4) showing comparatively more normalized valuation
+ranges relative to historical sector averages, reflecting its more
+established revenue base and more conventional monetization
+trajectory.
+
+=============================================================
+7. HISTORICAL SECTOR CYCLE COMPARISON (ILLUSTRATIVE)
+=============================================================
+
+For RM context, the desk offers the following illustrative
+historical framing, drawing on prior technology investment cycles.
+This is provided for qualitative pattern context only and is
+explicitly not a prediction that the current cycle will follow the
+same trajectory as any prior cycle; markets, technologies, and
+competitive dynamics differ across cycles in ways that limit the
+predictive value of direct historical analogy.
+
+Illustrative Pattern Observation A: Prior periods of significant
+infrastructure-driven technology investment cycles have
+historically exhibited an initial phase of broad-based investor
+enthusiasm across many participants in the value chain, followed
+by a maturation phase in which returns became more concentrated
+among companies with durable competitive advantages, while
+companies without such advantages saw valuation compression as
+initial growth expectations were not met.
+
+Illustrative Pattern Observation B: Enterprise software adoption
+cycles for new general-purpose technologies have historically
+shown a multi-year lag between initial product availability and
+broad-based enterprise monetization, consistent with the measured
+adoption pace currently observed in the enterprise software cohort
+(Section 4).
+
+The research desk's use of these illustrative historical patterns
+is intended solely to provide RMs with qualitative framing for
+client conversations about cycle dynamics, not to suggest specific
+return expectations or timing for the current AI infrastructure
+investment cycle.
+
+=============================================================
+8. SUPPLY CHAIN AND GEOPOLITICAL RISK ANALYSIS
+=============================================================
+
+The technology sector's supply chain, particularly for advanced
+semiconductor manufacturing, remains geographically concentrated
+in a small number of regions, creating structural supply chain
+risk independent of company-specific execution. The desk monitors
+several dimensions of this risk:
+
+Manufacturing Geographic Concentration: A significant share of
+advanced semiconductor fabrication capacity remains concentrated in
+a small number of geographic regions, creating potential supply
+disruption risk from geopolitical tensions, natural disasters, or
+infrastructure disruptions affecting those regions.
+
+Export Control Regime Evolution: Export control policies affecting
+advanced semiconductor equipment and, in some cases, finished
+products, continue to evolve across multiple jurisdictions. The
+desk does not attempt to predict specific future policy actions but
+notes that affected companies' addressable markets and supply chain
+flexibility can shift materially with limited advance notice
+following policy changes.
+
+Diversification Efforts: Several major industry participants have
+announced or begun executing geographic diversification strategies
+for manufacturing capacity, though these efforts generally require
+multi-year timelines to materially shift the geographic
+concentration profile of the broader industry.
+
+Critical Minerals and Materials: Certain materials critical to
+semiconductor and battery manufacturing remain concentrated in
+specific geographic supply sources, representing an additional,
+often underappreciated, layer of supply chain risk beyond
+manufacturing capacity itself.
+
+=============================================================
+9. ENERGY AND INFRASTRUCTURE CONSTRAINTS
+=============================================================
+
+Energy availability and grid capacity constraints in key data
+center markets remain an underappreciated operational risk for the
+compute and infrastructure cohort. The desk highlights several
+sub-themes:
+
+Grid Interconnection Timelines: In several key data center markets,
+grid interconnection queue timelines have lengthened materially,
+creating potential delays between data center construction
+completion and full operational capacity, independent of chip
+supply availability.
+
+On-Site and Dedicated Power Generation: A growing number of large
+data center operators have announced or pursued dedicated power
+generation arrangements, including various low-carbon generation
+sources, to manage grid constraint risk directly rather than
+relying solely on grid interconnection, representing a meaningful
+capital allocation shift within the cohort.
+
+Water Usage Considerations: Data center cooling water usage has
+become an increasing focus area for both regulators and local
+communities in certain water-constrained regions, representing a
+secondary but increasingly relevant operational and reputational
+risk factor for data center operators and, by extension, their
+hardware suppliers.
+
+Regional Power Cost Variation: Regional variation in power costs
+has become an increasingly important factor in data center site
+selection decisions, with operators showing increased willingness
+to site facilities in regions with favorable power cost and
+availability profiles even where this requires longer network
+latency to end users, reflecting the magnitude of power costs
+within overall data center operating economics.
+
+=============================================================
+10. REGULATORY LANDSCAPE OVERVIEW
+=============================================================
+
+Regulatory scrutiny of large technology platforms continues to
+evolve across multiple jurisdictions and could affect enterprise
+software monetization models, as well as broader sector dynamics.
+Relevant regulatory themes the desk monitors include:
+
+Data Privacy and AI Governance Frameworks: Multiple jurisdictions
+continue to develop or refine regulatory frameworks specifically
+addressing AI model development, deployment, and governance,
+creating potential compliance cost and operational complexity for
+companies operating across multiple regulatory regimes.
+
+Antitrust and Market Concentration Scrutiny: Regulatory scrutiny of
+market concentration among large technology platforms continues in
+multiple major jurisdictions, with potential implications for
+business model flexibility, particularly for companies operating
+significant platform or marketplace businesses alongside AI
+infrastructure or software offerings.
+
+Sector-Specific AI Regulation: Certain industry verticals,
+particularly those involving healthcare, financial services, and
+critical infrastructure applications of AI, face additional sector-
+specific regulatory requirements that may affect the pace of AI
+feature adoption within those verticals, relevant to the enterprise
+software cohort's monetization trajectory in those specific
+verticals.
+
+The desk does not provide legal or regulatory compliance advice;
+this overview is provided solely for general market context, and
+RMs should not present specific regulatory predictions to clients
+as confirmed outcomes.
+
+=============================================================
+11. PORTFOLIO CONSTRUCTION IMPLICATIONS
+=============================================================
+
+For RMs constructing or reviewing growth-oriented allocations:
+
+- Diversified technology exposure via the Horizon Aggressive Equity
+  Fund (HAEF) or Horizon Balanced Growth Fund (HBGF) sleeve
+  allocations is generally preferable to concentrated single-name
+  technology exposure for most client risk tiers.
+- Clients with a Conservative risk profile should generally avoid
+  direct sector concentration in technology beyond incidental
+  exposure through diversified large-cap holdings.
+- Clients with a Growth or Aggressive profile and appropriate time
+  horizon may consider increased sector-tilted exposure, subject to
+  standard concentration limits per the Suitability Policy (max 25%
+  single-sector allocation absent documented client override).
+- Given the valuation dispersion described in Section 6, the desk
+  favors diversified exposure across all three cohorts over
+  concentrated exposure to any single cohort, particularly the
+  AI-native cohort described in Section 5.
+
+=============================================================
+12. CROSS-REFERENCE TO APPROVED PRODUCT SHELF
+=============================================================
+
+RMs should note the following cross-references when discussing this
+research note alongside the approved product shelf:
+
+Horizon Aggressive Equity Fund (HAEF, Document PG-003): Carries
+meaningful technology sector exposure (28-38% of equity sleeve per
+its product guide); RMs should reference this research note when
+discussing the rationale for HAEF's sector positioning with Growth
+or Aggressive profile clients.
+
+Horizon Balanced Growth Fund (HBGF, Document PG-001): Carries more
+moderate, diversified technology exposure as part of its broader
+global equity allocation; appropriate for Balanced or Growth
+profile clients seeking less concentrated sector exposure than
+HAEF.
+
+Restricted List Cross-Reference (Document CMP-002): RULE-002
+(single sector concentration limit) and several product-family-
+specific operational control rules are directly relevant when
+combining direct technology holdings with fund-level technology
+exposure from HAEF or HBGF; RMs must aggregate exposure across all
+holdings when assessing the 25% sector concentration limit, not
+assess each holding in isolation.
+
+=============================================================
+13. RISKS TO THE THESIS — EXPANDED
+=============================================================
+
+- A pullback in AI-related infrastructure capex commitments by
+  major cloud providers would disproportionately affect cohort (a)
+  names, as described in Section 3.
+- Regulatory scrutiny of large technology platforms continues to
+  evolve across multiple jurisdictions and could affect enterprise
+  software monetization models, as described in Section 10.
+- Energy availability and grid capacity constraints in key data
+  center markets remain an underappreciated operational risk, as
+  detailed in Section 9.
+- A faster-than-expected normalization of AI feature monetization
+  expectations among enterprise software customers could pressure
+  valuations across the enterprise software cohort if actual
+  monetization continues to lag elevated investor expectations.
+- Geopolitical or export control policy shifts could materially and
+  rapidly affect addressable markets for companies with concentrated
+  manufacturing or supply chain exposure, as described in Section 8.
+- A broader market de-rating of long-duration growth equities,
+  driven by a shift in interest rate expectations, would likely
+  affect technology sector valuations disproportionately given the
+  sector's generally longer-duration cash flow profiles.
+
+=============================================================
+14. BULL CASE AND BEAR CASE SCENARIOS (ILLUSTRATIVE)
+=============================================================
+
+The following illustrative scenarios are provided for RM
+preparation and qualitative client conversation framing only. They
+are not price targets, return forecasts, or investment
+recommendations, and must not be presented to clients as such.
+
+Illustrative Bull Case: Continued sustained capital expenditure
+commitments from hyperscale cloud providers, combined with broader-
+than-currently-expected enterprise adoption of AI-enabled software
+features translating into proportionate pricing power, supports
+continued above-market growth across the technology sector, with
+valuation premiums sustained by durable earnings growth rather than
+multiple expansion alone.
+
+Illustrative Bear Case: A combination of capex discipline among
+major hyperscale buyers, continued lag in enterprise AI feature
+monetization, and a broader market de-rating of long-duration
+growth equities driven by shifting rate expectations leads to a
+period of valuation compression across the sector, with the
+greatest impact concentrated in the AI-native cohort (Section 5)
+and more speculative segments of the compute and infrastructure
+cohort.
+
+Illustrative Base Case (Desk's Central View): A continuation of the
+current bifurcated pattern, with durable competitive advantages
+increasingly differentiating performance across all three cohorts,
+supporting the desk's preference for diversified rather than
+concentrated sector exposure as described in Section 11.
+
+=============================================================
+15. RESEARCH DESK CONCLUSION
+=============================================================
+
+The desk maintains a constructive but selective stance on
+technology sector exposure for clients with appropriate risk
+tolerance and time horizon. This note is for RM preparation
+purposes only and does not constitute a recommendation for any
+specific client without a completed suitability check.
+
+=============================================================
+16. GLOSSARY OF SECTOR-SPECIFIC TERMS
+=============================================================
+
+Hyperscale Cloud Provider: A company operating cloud computing
+infrastructure at very large scale, typically with global data
+center footprints supporting both internal and third-party
+computing workloads.
+
+Compute and Infrastructure Cohort: Companies whose primary business
+involves designing, manufacturing, or operating the physical and
+semiconductor infrastructure underlying AI workloads.
+
+AI-Native Company: A company whose core product or service was
+designed from inception around AI capabilities, as distinct from an
+established company adding AI features to an existing product.
+
+Capex (Capital Expenditure): Spending on physical assets such as
+data centers, equipment, and infrastructure, as distinct from
+operating expenses.
+
+Fabrication Capacity: The physical manufacturing capacity available
+to produce semiconductor components, often a key supply-side
+constraint in the compute and infrastructure cohort.
+
+Grid Interconnection Queue: The administrative and technical
+process by which a new electricity demand source, such as a data
+center, is connected to the regional power grid, which can involve
+significant timeline uncertainty in constrained regions.
+
+=============================================================
+17. APPENDIX: RM PRE-APPROVED DISCUSSION FRAMEWORK
+=============================================================
+
+For RMs preparing to discuss technology sector positioning with
+clients, the following structured discussion framework is provided
+to ensure conversations remain grounded in the client's documented
+risk profile and suitability constraints, consistent with the
+Suitability & Compliance Policy.
+
+Step 1 — Confirm Current Risk Profile and Time Horizon: Before
+discussing any sector-specific positioning, confirm the client's
+current risk profile tier is on file and not expired, and confirm
+the relevant time horizon for the portion of the portfolio under
+discussion, per the Client Risk Profiling Methodology (Document
+CMP-003).
+
+Step 2 — Establish Existing Sector Exposure: Calculate the client's
+current aggregate technology sector exposure across all holdings,
+including direct single-name positions and fund-level exposure from
+products such as HAEF and HBGF, before discussing any incremental
+allocation.
+
+Step 3 — Frame the Cohort Distinction: Where relevant to the
+client's question or interest, use the three-cohort framework from
+this note (compute and infrastructure, enterprise software,
+AI-native) to provide qualitative risk differentiation, without
+referencing specific company names outside the approved product
+shelf.
+
+Step 4 — Apply Concentration Limits: Confirm that any proposed
+incremental allocation does not breach the 25% single-sector
+concentration limit (Restricted List Rule-002) without a documented
+and approved override.
+
+Step 5 — Document and Cite: Ensure the resulting ClientBrief
+includes appropriate citation to this research note and the
+relevant product guide(s), consistent with the firm's grounding and
+citation requirements for all client-facing recommendations.
+
+Step 6 — Apply Compliance Gate: Route the resulting recommendation
+through the standard compliance gate before client delivery,
+consistent with Section 3 of the Suitability & Compliance Policy.
+
+RMs should treat this framework as a structured checklist rather
+than a script; client conversations should remain natural and
+responsive to the client's actual questions and concerns, with this
+framework serving as a backstop to ensure suitability and compliance
+requirements are not inadvertently skipped during a fluid
+conversation.
+
+Step 7 — Revisit Periodically: Sector positioning discussions should
+be revisited at each scheduled portfolio review, not treated as a
+one-time conversation, given the pace of change described throughout
+this note across the compute, software, and early-stage cohorts.
+Material developments in any of the risk areas described in Sections
+8 through 10 may warrant an off-cycle conversation if the RM judges
+the development sufficiently relevant to the client's existing
+holdings.
+
+=============================================================
+DISCLAIMER: This research note reflects the views of the Horizon
+Wealth Research Desk as of the publication date and is subject to
+change without notice. It is intended solely to support RM
+preparation for client discussions and does not constitute
+personalized investment advice. Distribution restricted per
+entitlement tier listed above.
+=============================================================
+END OF DOCUMENT — RN-002 — Version 2.0
+=============================================================

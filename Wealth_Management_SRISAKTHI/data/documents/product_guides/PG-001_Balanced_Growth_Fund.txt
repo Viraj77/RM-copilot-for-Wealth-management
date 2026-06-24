@@ -1,0 +1,31 @@
+=============================================================
+PRODUCT GUIDE
+Document ID: PG-001
+Product Name: Horizon Balanced Growth Fund (HBGF)
+Product Type: Open-Ended Multi-Asset Fund
+Effective Date: 2026-01-15
+Version: 3.0
+Sensitivity: Public
+Entitlement: All RMs
+=============================================================
+
+1. PRODUCT OVERVIEW
+The Horizon Balanced Growth Fund (HBGF) targets long-term capital appreciation
+with moderate volatility through a 60/40 equity/fixed income strategic allocation.
+
+2. RISK CHARACTERISTICS
+Risk Rating: Moderate (4/10)
+Max Drawdown (illustrative): -18%
+Suitable for Balanced and Growth risk profiles.
+
+3. SUITABILITY GUIDANCE
+Recommended: Balanced, Growth
+Conditional: Conservative (max 20% satellite allocation)
+NOT suitable for: Aggressive clients seeking concentrated growth (use PG-003/HAEF)
+
+4. RM TALKING POINTS
+- Core holding for diversified balanced portfolios
+- Complements PG-002 (HCIF) for clients transitioning risk profiles
+- Reference CMP-003 for risk profiling methodology
+
+END OF DOCUMENT — PG-001

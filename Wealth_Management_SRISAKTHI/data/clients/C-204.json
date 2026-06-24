@@ -1,0 +1,15 @@
+{
+  "client_id": "C-204",
+  "client_name": "Margaret Chen",
+  "risk_profile": "Conservative",
+  "total_value_usd": 2450000,
+  "rm_id": "RM-001",
+  "rm_entitlements": ["public", "internal"],
+  "holdings": [
+    {"symbol": "US-TBILL", "name": "US Treasury Bills", "asset_class": "Fixed Income", "weight_pct": 35.0, "value_usd": 857500},
+    {"symbol": "AGG", "name": "iShares Core US Aggregate Bond ETF", "asset_class": "Fixed Income", "weight_pct": 25.0, "value_usd": 612500},
+    {"symbol": "VTI", "name": "Vanguard Total Stock Market ETF", "asset_class": "Equity", "weight_pct": 15.0, "value_usd": 367500},
+    {"symbol": "VNQ", "name": "Vanguard Real Estate ETF", "asset_class": "Real Estate", "weight_pct": 10.0, "value_usd": 245000},
+    {"symbol": "CASH", "name": "Money Market / Cash", "asset_class": "Cash", "weight_pct": 15.0, "value_usd": 367500}
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "client_id": "C-112",
+  "client_name": "Robert & Linda Thompson",
+  "risk_profile": "Balanced",
+  "total_value_usd": 1800000,
+  "rm_id": "RM-001",
+  "rm_entitlements": ["public", "internal"],
+  "holdings": [
+    {"symbol": "VTI", "name": "Vanguard Total Stock Market ETF", "asset_class": "Equity", "weight_pct": 30.0, "value_usd": 540000},
+    {"symbol": "AGG", "name": "iShares Core US Aggregate Bond ETF", "asset_class": "Fixed Income", "weight_pct": 35.0, "value_usd": 630000},
+    {"symbol": "VXUS", "name": "Vanguard Total International Stock ETF", "asset_class": "Equity", "weight_pct": 15.0, "value_usd": 270000},
+    {"symbol": "VNQ", "name": "Vanguard Real Estate ETF", "asset_class": "Real Estate", "weight_pct": 10.0, "value_usd": 180000},
+    {"symbol": "CASH", "name": "Money Market / Cash", "asset_class": "Cash", "weight_pct": 10.0, "value_usd": 180000}
+  ]
+}

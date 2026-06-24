@@ -1,0 +1,628 @@
+=============================================================
+PRODUCT GUIDE
+Document ID: PG-002
+Product Name: Horizon Conservative Income Fund (HCIF)
+Product Type: Open-Ended Debt-Oriented Hybrid Fund
+Effective Date: 2026-01-15
+Version: 4.0 (Expanded Edition)
+Sensitivity: Public
+Entitlement: All RMs
+=============================================================
+
+TABLE OF CONTENTS
+-------------------
+1. Product Overview
+2. Investment Objective and Philosophy
+3. Asset Allocation Ranges and Sub-Strategy Breakdown
+4. Portfolio Management Team and Process
+5. Risk Characteristics — Detailed
+6. Historical Performance Commentary (Illustrative, by Period)
+7. Suitability Guidance — Detailed Scenarios
+8. Fees & Charges — Full Schedule
+9. Distribution Policy and Income Mechanics
+10. Tax Considerations (General, Not Advice)
+11. Liquidity & Redemption Mechanics
+12. Underlying Holdings Composition (Illustrative Snapshot)
+13. Comparison to Related Horizon Products
+14. Frequently Asked Client Questions (RM Reference)
+15. RM Talking Points (Pre-Approved)
+16. Operational Due Diligence Summary
+17. Scenario Stress Testing Summary (Illustrative)
+18. Document Control and Revision History
+
+=============================================================
+1. PRODUCT OVERVIEW
+=============================================================
+
+The Horizon Conservative Income Fund (HCIF) is designed for capital
+preservation with modest income generation. The fund allocates
+75-90% of assets to high-grade government and corporate debt
+instruments, with the remaining 10-25% in large-cap blue-chip
+equities to provide a measured inflation hedge. The fund was built
+specifically for RMs serving clients whose primary objective is
+protecting accumulated wealth while still participating modestly
+in long-term capital markets growth, rather than maximizing return.
+
+Inception Date: 2014-03-01
+Fund Size (AUM): USD 1.42 billion (as of last quarter)
+Benchmark: Composite Conservative Index (70% Bloomberg Aggregate
+Bond Index / 30% S&P 500 Low Volatility Index)
+Base Currency: USD
+Minimum Initial Investment: USD 5,000
+Minimum Additional Investment: USD 500
+Fund Domicile: Luxembourg (UCITS-compliant structure)
+Fund Administrator: Horizon Fund Services Ltd.
+Custodian: Northbridge Trust & Custody Bank
+Independent Auditor: Halliday & Marsh LLP
+
+The fund has maintained a consistent mandate since inception, with
+only minor adjustments to the equity sleeve's volatility-screening
+methodology in 2019 and 2023. No change to the fund's core
+objective or risk classification has occurred since launch.
+
+=============================================================
+2. INVESTMENT OBJECTIVE AND PHILOSOPHY
+=============================================================
+
+To generate stable income with low volatility while preserving
+capital over a rolling 3-year horizon. The fund is not designed
+for aggressive capital appreciation.
+
+The portfolio management team applies a "capital-first" philosophy:
+every security considered for inclusion is first screened for
+downside protection characteristics before being evaluated for
+yield or income contribution. This is a deliberate inversion of
+the more common "yield-first" approach used by many income funds,
+and is the primary reason HCIF has historically exhibited a lower
+maximum drawdown than comparable category peers during periods of
+market stress.
+
+The philosophy rests on three pillars:
+
+Pillar One — Quality Over Yield: The team will forgo incremental
+yield if it requires meaningfully reducing average credit quality.
+The fund's investment committee has a standing policy that no more
+than 8% of the bond sleeve may carry a rating below BBB-.
+
+Pillar Two — Duration Discipline: Effective duration is actively
+managed within a 3.5 to 5.5 year band, intentionally avoiding the
+temptation to extend duration purely to capture a steeper yield
+curve, since duration extension increases interest rate sensitivity
+beyond what the fund's conservative mandate permits.
+
+Pillar Three — Equity as Ballast, Not Growth Engine: The equity
+sleeve is constructed using a low-volatility factor screen, favoring
+companies with stable earnings, lower beta, and consistent dividend
+histories over high-growth names. This sleeve exists to provide a
+long-term inflation hedge and modest total return enhancement, not
+to drive the fund's overall return profile.
+
+=============================================================
+3. ASSET ALLOCATION RANGES AND SUB-STRATEGY BREAKDOWN
+=============================================================
+
+Strategic (long-term target) allocation:
+- Government & Agency Bonds: 35% - 50% (target midpoint: 42%)
+- Investment-Grade Corporate Bonds (BBB- and above): 25% - 40%
+  (target midpoint: 32%)
+- Large-Cap Equities (low-volatility factor): 10% - 25%
+  (target midpoint: 18%)
+- Cash & Cash Equivalents: 0% - 10% (target midpoint: 4%)
+- Other (limited allocation to inflation-linked securities): up to 4%
+
+Sub-strategy breakdown within the government & agency sleeve:
+- Sovereign bonds (developed markets): approximately 65% of sleeve
+- Supranational and agency issuance: approximately 25% of sleeve
+- Inflation-linked sovereign bonds: approximately 10% of sleeve
+
+Sub-strategy breakdown within the corporate bond sleeve:
+- Financials (banks, insurers): approximately 30% of sleeve
+- Industrials: approximately 25% of sleeve
+- Utilities and infrastructure-adjacent issuers: approximately 20%
+  of sleeve
+- Consumer staples and healthcare: approximately 25% of sleeve
+
+Sub-strategy breakdown within the equity sleeve:
+- Consumer staples: approximately 22% of sleeve
+- Healthcare: approximately 20% of sleeve
+- Utilities: approximately 18% of sleeve
+- Financials (large, diversified): approximately 15% of sleeve
+- Industrials (defensive subsegment): approximately 13% of sleeve
+- Other defensive sectors: approximately 12% of sleeve
+
+Rebalancing occurs on a quarterly cycle, with tactical adjustments
+permitted within stated bands at the portfolio manager's discretion
+in response to material shifts in the rate environment or credit
+cycle. Any rebalancing outside the stated strategic bands requires
+investment committee approval and is disclosed in the fund's
+quarterly factsheet.
+
+=============================================================
+4. PORTFOLIO MANAGEMENT TEAM AND PROCESS
+=============================================================
+
+The fund is managed by the Horizon Fixed Income & Conservative
+Strategies desk, a team that also oversees the firm's institutional
+conservative mandates. The desk follows a four-stage process:
+
+Stage 1 — Macro Framework: The team establishes a house view on
+rates, credit spreads, and inflation expectations, refreshed
+monthly and reviewed weekly for material developments.
+
+Stage 2 — Security Selection: Bottom-up credit analysis is applied
+to all corporate bond candidates, with a dedicated credit research
+function independent of the portfolio management team to avoid
+conflicts of interest in security selection.
+
+Stage 3 — Portfolio Construction: Securities are blended according
+to the strategic allocation targets, with explicit attention to
+correlation between the bond and equity sleeves during periods of
+market stress, since the fund's defensive characteristics depend
+on the two sleeves not moving in lockstep during a drawdown.
+
+Stage 4 — Risk Oversight: An independent risk team, separate from
+portfolio management, monitors duration, credit quality, sector
+concentration, and equity beta against policy limits daily, with
+formal escalation procedures if any metric breaches a soft limit
+for more than five consecutive business days.
+
+=============================================================
+5. RISK CHARACTERISTICS — DETAILED
+=============================================================
+
+Risk Rating: LOW TO MODERATE (Internal Scale 2 of 5)
+Standard Deviation (3-yr trailing): 4.8%
+Standard Deviation (5-yr trailing): 5.3%
+Maximum Drawdown (5-yr lookback): -7.3% (March 2026 rate shock)
+Maximum Drawdown (10-yr lookback): -9.1% (2020 market dislocation)
+Duration (effective): 4.2 years
+Convexity: Positive, moderate
+Credit Quality: 92% of bond holdings rated A- or higher; 8% rated
+BBB+ to BBB-
+Equity Beta (sleeve only, vs. S&P 500): 0.71
+Sharpe Ratio (5-yr trailing, illustrative): 0.84
+Sortino Ratio (5-yr trailing, illustrative): 1.12
+
+Risk factors in detail:
+
+Interest Rate Risk: As a fund with material exposure to fixed-rate
+debt instruments, HCIF's bond sleeve will lose value when interest
+rates rise and gain value when rates fall, all else equal. The
+fund's effective duration of 4.2 years implies that a 100 basis
+point parallel rise in rates would be expected to reduce the bond
+sleeve's value by approximately 4.2%, before accounting for any
+offsetting carry or convexity effects.
+
+Credit Risk: While the fund maintains a high average credit
+quality, individual issuer downgrades or defaults remain possible.
+The fund's credit research process is designed to identify
+deteriorating credit profiles before they result in a rating
+downgrade, but this process cannot eliminate credit risk entirely.
+
+Equity Market Risk: The equity sleeve, while constructed using a
+low-volatility screen, remains subject to broad equity market
+declines. During periods of severe, broad-based market stress,
+defensive equity sectors have historically still declined, albeit
+typically less than the broader market.
+
+Liquidity Risk: Under normal market conditions, the fund's
+underlying holdings are highly liquid. During periods of severe
+market dislocation, bid-ask spreads on corporate bonds in
+particular can widen materially, which may affect the fund's
+ability to transact at expected prices, though this risk is
+mitigated by the fund's cash buffer and high-quality government
+bond holdings.
+
+Currency Risk: The fund is predominantly USD-denominated, with
+limited (under 5%) non-USD exposure, which is generally hedged
+back to USD. Residual currency risk is considered immaterial to
+the fund's overall risk profile.
+
+This fund carries interest rate risk, credit risk, and limited
+equity market risk. It is NOT principal-protected and the unit
+value can fall, although historically with lower magnitude than
+balanced or growth-oriented funds.
+
+=============================================================
+6. HISTORICAL PERFORMANCE COMMENTARY (ILLUSTRATIVE, BY PERIOD)
+=============================================================
+
+The following commentary describes illustrative historical
+performance periods for RM context. All figures are historical
+and are not indicative of future results. Past performance is
+not forward-looking guidance.
+
+Period A — Rate Hiking Cycle (illustrative): During a sustained
+rate hiking cycle, the fund's shorter relative duration compared
+to broad market bond aggregates helped limit downside in the bond
+sleeve, though the fund still experienced a moderate decline in
+unit value, consistent with its risk rating.
+
+Period B — Market Dislocation Event (illustrative): During a
+broad market dislocation event, the fund's defensive equity sleeve
+and high-quality bond holdings combined to produce a smaller peak-
+to-trough decline than the fund's blended benchmark, consistent
+with the fund's capital-preservation objective, though the fund
+was not immune to losses.
+
+Period C — Recovery and Stabilization (illustrative): Following
+periods of market stress, the fund has historically participated
+in a portion of subsequent market recoveries, reflecting its
+partial equity allocation, while lagging more aggressive funds
+during sharp upward market moves, consistent with its conservative
+mandate.
+
+RMs should never present these illustrative period descriptions as
+specific forward guidance or as a guarantee of how the fund would
+behave in a future similar scenario. Markets do not repeat
+identically, and the fund's holdings and risk parameters may have
+changed since any historical period referenced.
+
+=============================================================
+7. SUITABILITY GUIDANCE — DETAILED SCENARIOS
+=============================================================
+
+Recommended Investor Risk Profile: Conservative or Balanced
+Recommended Holding Period: Minimum 3 years
+
+NOT suitable for:
+  - Investors requiring guaranteed return of principal
+  - Investors with an Aggressive or Growth risk profile seeking
+    higher capital appreciation (allocate to HBGF or HAEF instead)
+  - Investors needing same-day liquidity (settlement is T+3)
+  - Investors whose sole objective is maximizing tax-deferred
+    growth over a multi-decade horizon (a Growth-oriented vehicle
+    is typically more appropriate)
+
+This fund IS generally suitable for:
+  - Retirees or near-retirees seeking income with limited drawdown
+  - Conservative clients building an emergency-adjacent reserve
+    beyond standard cash holdings
+  - Balanced clients seeking a defensive sleeve within a broader
+    multi-asset portfolio
+  - Clients transitioning out of a Growth or Aggressive profile
+    following a documented life-stage change (e.g., approaching
+    retirement) who need a lower-volatility holding period bridge
+
+Illustrative scenario A: A Conservative-profile client aged 68,
+recently retired, seeking monthly income to supplement a pension,
+with a stated need to preserve principal. HCIF's monthly
+distribution mechanism and low historical drawdown make it a
+reasonable core holding for discussion, subject to the standard
+suitability check against the client's full RPQ.
+
+Illustrative scenario B: A Balanced-profile client aged 45 with a
+10-year horizon for a portion of their portfolio, seeking to
+reduce overall portfolio volatility after a market stress event
+prompted them to reassess their risk tolerance. HCIF may be
+appropriate as a partial reallocation target, subject to the
+client's updated RPQ reflecting any change in stated risk
+tolerance.
+
+Illustrative scenario C: An Aggressive-profile client in their 30s
+asking about HCIF purely because "it sounds safer." This is a
+scenario where the RM should probe further — if the client's
+underlying objective is long-term growth and their risk profile is
+accurately assessed as Aggressive, HCIF is unlikely to be
+appropriate as anything beyond a small tactical cash-equivalent
+allocation, and the RM should not steer the client away from their
+documented risk profile without a formal re-assessment.
+
+=============================================================
+8. FEES & CHARGES — FULL SCHEDULE
+=============================================================
+
+Management Fee: 0.65% per annum, accrued daily and reflected in
+the fund's published NAV
+Entry Load: Nil
+Exit Load: 1.0% if redeemed within 180 days of purchase; Nil
+thereafter
+Total Expense Ratio (TER): 0.89% (includes management fee,
+administration fee, custody fee, and audit fee)
+Performance Fee: None (the fund does not charge a performance fee)
+Switching Fee (into another Horizon fund): Nil, subject to
+standard suitability re-check
+Platform / Distribution Fee: May apply depending on the RM's
+distribution channel; refer to the client's specific fee schedule
+
+A full breakdown of the TER is published in the fund's annual
+report and is available to RMs via the internal fund documentation
+portal. RMs must ensure the client receives the current Key
+Information Document (KID) or equivalent disclosure prior to
+subscription, which contains the authoritative, regulator-reviewed
+fee disclosure.
+
+=============================================================
+9. DISTRIBUTION POLICY AND INCOME MECHANICS
+=============================================================
+
+Income distributions are declared monthly, subject to
+distributable surplus. Distribution Reinvestment Plan (DRIP)
+available at no additional charge.
+
+Trailing 12-month distribution yield: 3.9% (not guaranteed;
+historical figures are not indicative of future distributions)
+
+Distribution mechanics: The fund's distributable income is
+calculated based on net investment income (interest and dividend
+income received, less fund expenses) for the relevant period.
+Distributions are not guaranteed and may be reduced, suspended, or
+in rare circumstances funded partially from capital if net
+investment income is insufficient to support the historical
+distribution rate; any such instance would be disclosed in the
+fund's monthly factsheet.
+
+Distribution payment timeline: Declared distributions are typically
+paid within 5 business days of the month-end record date, either
+as cash to the client's nominated account or reinvested as
+additional units under the DRIP election.
+
+=============================================================
+10. TAX CONSIDERATIONS (GENERAL, NOT ADVICE)
+=============================================================
+
+Distributions may be taxed as income in the investor's
+jurisdiction of residence. Capital gains on units held longer
+than 12 months may qualify for long-term treatment in applicable
+jurisdictions. RMs must direct clients to a qualified tax advisor
+for jurisdiction-specific guidance; RMs are not authorized to
+provide tax advice.
+
+General considerations RMs may reference at a high level (subject
+to the licensing gate in the Suitability & Compliance Policy):
+
+- The fund's Luxembourg UCITS domicile may have different
+  withholding tax implications than a domestically-domiciled fund,
+  depending on the client's tax residency and any applicable tax
+  treaty.
+- Reinvested distributions under the DRIP election are still
+  generally treated as taxable income in most jurisdictions in the
+  year they are declared, notwithstanding that no cash was
+  received by the client; clients should be made aware of this
+  general principle and referred to their tax advisor for
+  confirmation in their specific jurisdiction.
+- Exit load charged on early redemption is generally not tax
+  deductible as an investment expense in most jurisdictions, though
+  this varies and must be confirmed by a qualified tax professional.
+
+=============================================================
+11. LIQUIDITY & REDEMPTION MECHANICS
+=============================================================
+
+Redemption Frequency: Daily (on business days)
+Settlement: Trade Date + 3 Business Days (T+3)
+Cut-off Time for Same-Day Pricing: 3:00 PM fund domicile time
+Redemption Gate: The fund reserves the right to limit redemptions
+to 10% of NAV per dealing day during periods of severe market
+stress, per the Fund's offering memorandum section 8.4.
+
+Partial redemptions are permitted, subject to a minimum residual
+holding of USD 1,000 to keep the account open; redemptions that
+would bring the account below this threshold are treated as a
+full redemption and the account is closed.
+
+In-kind redemptions are not available to retail-channel clients
+and require Investment Committee approval if requested by an
+institutional client.
+
+=============================================================
+12. UNDERLYING HOLDINGS COMPOSITION (ILLUSTRATIVE SNAPSHOT)
+=============================================================
+
+The following is an illustrative snapshot of the fund's holding
+composition style for RM reference. Actual holdings change over
+time and the authoritative current holdings list is published in
+the fund's monthly factsheet, not in this product guide.
+
+Top holding categories by weight (illustrative):
+1. Developed market sovereign bonds (various maturities)
+2. Supranational agency bonds (various maturities)
+3. Investment-grade financial sector corporate bonds
+4. Investment-grade utility sector corporate bonds
+5. Large-cap consumer staples equities
+6. Large-cap healthcare equities
+7. Large-cap utilities equities
+8. Inflation-linked sovereign bonds
+9. Cash and short-term money market instruments
+10. Investment-grade industrial sector corporate bonds
+
+Number of underlying holdings (illustrative range): 180-220 bond
+positions and 60-80 equity positions, reflecting the fund's
+diversified approach to risk reduction at the security level.
+
+=============================================================
+13. COMPARISON TO RELATED HORIZON PRODUCTS
+=============================================================
+
+HCIF vs. Horizon Balanced Growth Fund (HBGF): HCIF carries a
+materially lower equity allocation (10-25% vs. 50-70%), lower
+historical volatility, and a lower historical maximum drawdown,
+but correspondingly lower long-term expected return. HBGF is
+appropriate for Balanced or Growth profile clients with a longer
+horizon; HCIF is appropriate for Conservative or Balanced profile
+clients prioritizing capital preservation.
+
+HCIF vs. Fixed Deposits / Bond Ladder (PG-004 products): Fixed
+Deposits offer principal protection (subject to issuer risk) but
+no daily liquidity and typically lower yield than HCIF's blended
+return profile over a full market cycle. The Bond Ladder offers
+more granular control over maturity and duration but requires
+more active client engagement than a single diversified fund.
+HCIF may be appropriate for clients seeking a single, professionally
+managed conservative holding rather than self-directed duration
+management.
+
+HCIF vs. Money Market Notes (PG-004): Money market notes offer
+greater liquidity and lower volatility than HCIF but a materially
+lower expected long-term return, and offer essentially no
+inflation-hedging equity component. Money market notes are more
+appropriate for near-term liquidity needs (under 12 months); HCIF
+is more appropriate for a 3+ year conservative allocation.
+
+=============================================================
+14. FREQUENTLY ASKED CLIENT QUESTIONS (RM REFERENCE)
+=============================================================
+
+Q: "Is my money guaranteed in this fund?"
+A: No. RMs should clearly state that HCIF is not principal-
+protected and that, while historically lower volatility than
+balanced or growth funds, the unit value can decline.
+
+Q: "Why does this fund hold any equities at all if it's
+conservative?"
+A: The equity sleeve exists to provide a measured inflation hedge
+and modest total return enhancement; it is constructed using a
+low-volatility screen specifically to limit its contribution to
+overall fund volatility.
+
+Q: "Can I get my money out quickly if I need it?"
+A: Redemptions settle T+3 under normal conditions. RMs should
+disclose the redemption gate provision for periods of severe
+market stress per Section 11.
+
+Q: "What happens to my distributions if I don't need the income?"
+A: Clients can elect the Distribution Reinvestment Plan (DRIP) at
+no additional cost, which automatically reinvests distributions as
+additional fund units.
+
+Q: "How does this compare to just holding a fixed deposit?"
+A: Refer to Section 13's comparison; RMs should present both
+options factually and let the client's documented risk profile and
+liquidity needs guide the discussion, rather than advocating for
+one product over the other absent a completed suitability
+assessment.
+
+=============================================================
+15. RM TALKING POINTS (PRE-APPROVED)
+=============================================================
+
+- "HCIF targets income with lower volatility than equity-heavy
+  funds, suited to investors prioritizing capital stability."
+- "The fund's effective duration of approximately 4.2 years means
+  it carries moderate sensitivity to interest rate movements."
+- "Past distribution yield of 3.9% is historical and not a
+  forward guarantee."
+- "The fund's equity sleeve is built using a low-volatility
+  screen, designed to provide an inflation hedge without taking on
+  full equity market risk."
+- "This fund is not principal-protected; capital preservation is
+  an objective, not a guarantee."
+
+Any talking point outside this pre-approved list must be validated
+against the Suitability & Compliance Policy (Doc ID: CMP-001)
+before use with a client.
+
+=============================================================
+18. DOCUMENT CONTROL AND REVISION HISTORY
+=============================================================
+
+Version 1.0 — 2014-03-01 — Initial publication at fund launch
+Version 2.0 — 2019-06-15 — Updated equity sleeve screening
+methodology; refreshed risk statistics
+Version 3.0 — 2023-02-10 — Updated fee schedule; added detailed
+FAQ section
+Version 4.0 — 2026-01-15 — Expanded edition; added portfolio
+management process detail, historical performance commentary
+framework, and product comparison section
+
+This document is reviewed at minimum annually by the Product
+Governance team and the Fixed Income & Conservative Strategies
+desk. RMs should always confirm they are referencing the current
+version via the internal fund documentation portal before a client
+meeting, as product terms are subject to change.
+
+=============================================================
+16. OPERATIONAL DUE DILIGENCE SUMMARY
+=============================================================
+
+The following operational due diligence points are maintained for
+RM reference and may be shared with institutional or sophisticated
+clients upon request, subject to Compliance pre-clearance for any
+non-standard disclosure.
+
+Valuation Policy: The fund is priced daily using independent
+third-party pricing sources for all fixed income holdings;
+equities are priced using exchange closing prices in their
+primary listing market. Any security lacking a reliable
+third-party price is subject to a documented fair value
+determination by the fund's independent valuation committee.
+
+Counterparty Risk Management: The fund's custodian, Northbridge
+Trust & Custody Bank, is subject to annual independent review by
+the fund's Operational Risk Committee. Any derivative usage
+(limited to interest rate hedging only, not used for leverage) is
+subject to counterparty exposure limits and daily collateral
+monitoring.
+
+Business Continuity: The fund's administrator maintains a tested
+business continuity plan with documented recovery time objectives;
+the most recent continuity test was conducted within the trailing
+12 months with no material findings requiring escalation.
+
+Conflicts of Interest: The fund's credit research function is
+organizationally separate from portfolio management, as described
+in Section 4, specifically to mitigate conflicts of interest in
+security selection. Any cross-holding between Horizon-managed
+funds is disclosed in the annual report.
+
+Regulatory Status: The fund operates under UCITS regulations in
+its Luxembourg domicile and is registered for distribution in
+multiple jurisdictions; RMs must confirm the fund is registered
+for distribution in the client's jurisdiction of residence before
+recommending it, as registration status varies by jurisdiction and
+is maintained centrally by the Product Governance team.
+
+=============================================================
+17. SCENARIO STRESS TESTING SUMMARY (ILLUSTRATIVE)
+=============================================================
+
+The portfolio risk team conducts periodic stress testing against
+illustrative macroeconomic scenarios to support ongoing risk
+oversight. The following scenario summaries are illustrative
+modeling exercises, not predictions or guarantees of actual future
+fund performance, and must never be presented to clients as
+forecasts.
+
+Scenario: Parallel Rate Shock (+150bps): Illustrative modeled
+impact to the bond sleeve is a decline of approximately 5.5-6.5%,
+partially offset by the equity sleeve's typically lower sensitivity
+to rate moves in isolation, for an illustrative blended fund impact
+in the range of -4% to -5%, before considering any active
+management response.
+
+Scenario: Credit Spread Widening (+100bps investment grade): 
+Illustrative modeled impact to the corporate bond sub-sleeve is a
+decline of approximately 3-4%, with a smaller blended fund impact
+given the corporate sleeve represents roughly a third of total
+fund assets.
+
+Scenario: Broad Equity Market Decline (-20%): Given the fund's
+defensive equity sleeve characteristics and historical beta of
+approximately 0.71 relative to broad equity markets, illustrative
+modeled impact to the equity sleeve is a decline in the range of
+-13% to -15%, with a blended fund impact in the range of -2.5% to
+-3.5% given the equity sleeve's 10-25% weight.
+
+Scenario: Combined Stress (rate shock + credit widening + equity
+decline, simultaneous): This combined scenario represents the most
+severe illustrative stress case modeled and produces a blended
+fund impact broadly consistent with, though not identical to, the
+fund's historical maximum drawdown figures cited in Section 5.
+Combined scenarios do not simply sum individual scenario impacts
+due to imperfect correlation between risk factors; the portfolio
+risk team's modeling accounts for historical and stressed
+correlation assumptions.
+
+RMs should never present stress test outputs to clients as
+predictions of future performance. These are risk management tools
+used internally to validate that the fund's actual risk exposure
+remains consistent with its stated risk rating and mandate, and may
+only be referenced with clients in general, qualitative terms (e.g.,
+"the fund is designed to limit downside in adverse rate
+environments") rather than with specific modeled percentage figures,
+unless Compliance has specifically pre-approved such disclosure for
+a sophisticated or institutional client context.
+
+=============================================================
+END OF DOCUMENT — PG-002 — Version 4.0
+=============================================================

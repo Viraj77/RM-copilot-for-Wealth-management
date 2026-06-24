@@ -1,0 +1,25 @@
+=============================================================
+COMPLIANCE POLICY
+Document ID: CMP-004
+Title: Licensed Advice & Escalation Procedures
+Effective Date: 2026-01-01
+Sensitivity: Internal
+Entitlement: All RMs
+=============================================================
+
+1. LICENSED ADVICE TRIGGERS
+The following require Wealth Planning team and licensed advisor involvement:
+- Personalized withdrawal rate recommendations (e.g., 4% rule for specific client)
+- Specific buy/sell/hold trade instructions
+- Social Security claiming strategies
+- Annuity product recommendations
+
+2. AI COPILOT RULES
+- AI briefs are decision support only — not automated advice
+- Escalation required before client communication when status is Needs Review
+- Human-in-the-loop approval mandatory for escalated briefs
+
+3. DOCUMENTATION
+All escalations logged with timestamp, RM ID, client ID, and reason.
+
+END OF DOCUMENT — CMP-004
