@@ -43,23 +43,9 @@ def render_brief(raw_text: str, rm_tier: str) -> None:
     # 3. Apply Disclaimers
     final_output = apply_disclaimers(gate_result["safe_output"])
 
-    # 4. Render the safe brief using an enhanced Tabbed interface
+    # 4. Render the safe brief
     st.markdown("### 📄 Generated Brief")
     
-    tab1, tab2 = st.tabs(["📝 Summary & Analysis", "⚖️ Disclaimers"])
-    
-    # Try to separate disclaimers from the main text 
-    # (apply_disclaimers appends them with "\n\n---\n**DISCLAIMERS:**\n")
-    parts = final_output.split("\n\n---\n**DISCLAIMERS:**\n", 1)
-    main_body = parts[0]
-    disclaimer_text = "**DISCLAIMERS:**\n" + parts[1] if len(parts) > 1 else ""
-
-    with tab1:
-        with st.container(border=True):
-            st.markdown(main_body)
-            
-    with tab2:
-        if disclaimer_text:
-            st.caption(disclaimer_text.strip())
-        else:
-            st.info("No disclaimers appended.")
+    # Using a neat container for the brief text
+    with st.container(border=True):
+        st.markdown(final_output)

@@ -59,17 +59,18 @@ def _check_entitlement(client: ClientProfile, rm_tier: str) -> bool:
 
 # ── Core lookup function ──────────────────────────────────────────────────────
 
-def portfolio_lookup(client_id: str, rm_tier: str = "standard") -> dict[str, Any]:
+def portfolio_lookup(client_id: str, rm_tier: str = "standard", include_holdings: bool = True) -> dict[str, Any]:
     """
     Fetch client portfolio holdings and risk profile.
 
     Args:
         client_id: Client identifier in format "C-NNN" (e.g. "C-204").
         rm_tier: RM's entitlement tier ("standard" | "premium" | "institutional").
+        include_holdings: If False, omits the large 'holdings' array to save tokens.
 
     Returns:
         Dict with client_id, client_name, risk_profile, total_aum, investment_horizon,
-        holdings, allocation_breakdown, last_review_date, and entitlement_tier.
+        holdings (optional), allocation_breakdown, last_review_date, and entitlement_tier.
 
     Raises:
         ValueError: If client_id not found or RM is not entitled to access the client.
@@ -115,19 +116,23 @@ def portfolio_lookup(client_id: str, rm_tier: str = "standard") -> dict[str, Any
         for h in client.holdings
     ]
 
-    return {
+    result = {
         "success": True,
         "client_id": client.client_id,
         "client_name": client.name,
         "risk_profile": client.risk_profile.value,
         "investment_horizon": client.investment_horizon,
         "total_aum_usd": client.total_aum,
-        "holdings": holdings_list,
         "allocation_breakdown": allocation,
         "last_review_date": client.last_review_date.isoformat() if client.last_review_date else None,
         "entitlement_tier": client.entitlement_tier.value,
         "rm_notes": client.notes,
     }
+    
+    if include_holdings:
+        result["holdings"] = holdings_list
+        
+    return result
 
 
 # ── LangChain Tool wrapper ────────────────────────────────────────────────────
@@ -138,7 +143,7 @@ def get_portfolio_tool():
         from langchain_core.tools import tool  # type: ignore
 
         @tool
-        def portfolio_lookup_tool(client_id: str, rm_tier: str = "standard") -> str:
+        def portfolio_lookup_tool(client_id: str, rm_tier: str = "standard", include_holdings: bool = False) -> str:
             """
             Fetch a client's portfolio holdings and risk profile from the database.
 
@@ -148,11 +153,14 @@ def get_portfolio_tool():
             Args:
                 client_id: Client identifier in format 'C-NNN' (e.g. 'C-204').
                 rm_tier: RM entitlement tier ('standard', 'premium', 'institutional').
+                include_holdings: Set to True ONLY if you specifically need to analyze
+                                  individual securities, funds, or line-item performance.
+                                  Leave False to save context window tokens.
 
             Returns:
                 JSON string with client portfolio data.
             """
-            result = portfolio_lookup(client_id, rm_tier)
+            result = portfolio_lookup(client_id, rm_tier, include_holdings=include_holdings)
             return json.dumps(result, indent=2, default=str)
 
         return portfolio_lookup_tool
@@ -173,4 +181,4 @@ def get_all_client_ids() -> list[str]:
 def get_client_display_names() -> dict[str, str]:
     """Return {client_id: display_name} mapping for UI."""
     db = _load_client_db()
-    return {cid: f"{cid} — {c.name} ({c.risk_profile.value.title()})" for cid, c in db.items()}
+    return {cid: f"{cid} — {db[cid].name} ({db[cid].risk_profile.value.title()})" for cid in sorted(db.keys())}

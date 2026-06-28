@@ -502,6 +502,49 @@ def _meta_to_chunk(chunk_id: str, content: str, meta: dict) -> DocumentChunk:
     )
 
 
+# ── Single-file ingestion runner ──────────────────────────────────────────────
+
+def ingest_single_file(filepath: Path, doc_type: str) -> None:
+    """
+    Ingest a single document into the existing ChromaDB collection.
+    
+    Args:
+        filepath: Path to the document.
+        doc_type: Type of document (e.g., 'product', 'policy', 'research').
+    """
+    from src.models.documents import DocType
+    from src.ingestion.loader import load_file
+    from src.ingestion.chunker import chunk_documents
+    from src.ingestion.embedder import embed_chunks
+
+    print("\n" + "=" * 60)
+    print(f"  Ingesting single file: {filepath.name}")
+    print("=" * 60)
+    
+    # 1. Load
+    doc = load_file(filepath, DocType(doc_type))
+    
+    # 2. Chunk
+    chunks = chunk_documents(
+        [doc],
+        chunk_size=settings.chunk_size,
+        chunk_overlap=settings.chunk_overlap,
+    )
+    
+    if not chunks:
+        print("  No chunks generated. Skipping.")
+        return
+
+    # 3. Embed
+    chunks, embeddings = embed_chunks(chunks)
+
+    # 4. Index
+    chroma = ChromaIndexer()
+    chroma.index_chunks(chunks, embeddings)
+    
+    print(f"  ✅ Single file ingestion complete! {len(chunks)} chunks indexed.")
+
+
 # ── End-to-end ingestion runner ───────────────────────────────────────────────
 
 def run_ingestion(
@@ -563,7 +606,7 @@ def run_ingestion(
         faiss_indexer.save()
 
     print("\n" + "=" * 60)
-    print(f"  ✅ Ingestion complete! {len(chunks)} chunks indexed.")
+    print(f"  [OK] Ingestion complete! {len(chunks)} chunks indexed.")
     print("=" * 60 + "\n")
 
     return chroma, faiss_indexer

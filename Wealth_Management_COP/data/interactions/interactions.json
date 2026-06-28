@@ -1,0 +1,81 @@
+{
+  "interactions": [
+    {
+      "interaction_id": "INT-001",
+      "client_id": "C-204",
+      "date": "2023-11-15",
+      "type": "meeting",
+      "content": "Meeting with Sarah. She expressed significant concern about her portfolio's heavy tech exposure after recent market volatility. Seemed quite anxious and asked if we should move to cash. Reassured her about long-term strategy, but trust seemed slightly shaken."
+    },
+    {
+      "interaction_id": "INT-002",
+      "client_id": "C-204",
+      "date": "2024-02-10",
+      "type": "email",
+      "content": "Email from Sarah: 'Hi, I saw the recent tech rally. Are we capturing this? I feel like we might be missing out. Please let me know if we need to adjust.' Tone was eager but a bit impatient."
+    },
+    {
+      "interaction_id": "INT-003",
+      "client_id": "C-204",
+      "date": "2024-05-22",
+      "type": "meeting",
+      "content": "Quarterly review. Sarah was extremely happy with the Q1 performance. She thanked me for advising her not to sell in November. Trust is very high right now, very engaged in discussing her son's college fund."
+    },
+    {
+      "interaction_id": "INT-004",
+      "client_id": "C-301",
+      "date": "2023-12-05",
+      "type": "meeting",
+      "content": "Annual institutional review with James. Very clinical and data-driven. He was unsatisfied with the fixed income yield lagging the benchmark by 0.2%. Demanded a full attribution report. Trust is fine but he is highly demanding."
+    },
+    {
+      "interaction_id": "INT-005",
+      "client_id": "C-301",
+      "date": "2024-04-18",
+      "type": "email",
+      "content": "James requested our macro outlook for Q3. Said the board is getting nervous about rate cuts being delayed. Wanted to know our duration strategy. Strictly business, very focused on downside protection."
+    },
+    {
+      "interaction_id": "INT-006",
+      "client_id": "C-115",
+      "date": "2024-01-20",
+      "type": "meeting",
+      "content": "Initial onboarding meeting with Margaret. She was very cautious and risk-averse. Asked many questions about bond yields and safety of principal. High engagement but clear anxiety about outliving her savings."
+    },
+    {
+      "interaction_id": "INT-007",
+      "client_id": "C-115",
+      "date": "2024-06-15",
+      "type": "meeting",
+      "content": "6-month check-in. Margaret was a bit disappointed that bond prices had fallen. Had to explain duration and yield dynamics. She understood but seemed less comfortable than before."
+    },
+    {
+      "interaction_id": "INT-008",
+      "client_id": "C-442",
+      "date": "2023-10-10",
+      "type": "meeting",
+      "content": "Met with Raj to discuss international expansion. He was very enthusiastic about adding emerging market exposure. High trust, highly engaged, very growth-focused."
+    },
+    {
+      "interaction_id": "INT-009",
+      "client_id": "C-442",
+      "date": "2024-03-05",
+      "type": "phone",
+      "content": "Brief phone call. Raj wanted to quickly reallocate some cash into international equities after reading a macro report. He was confident and satisfied with our responsiveness."
+    },
+    {
+      "interaction_id": "INT-010",
+      "client_id": "C-510",
+      "date": "2024-02-15",
+      "type": "meeting",
+      "content": "Portfolio review with Emily. She was somewhat disengaged and mentioned being busy with work. Appeared satisfied with the moderate growth but lacked deep interest in the details."
+    },
+    {
+      "interaction_id": "INT-011",
+      "client_id": "C-510",
+      "date": "2024-05-10",
+      "type": "email",
+      "content": "Email from Emily asking about withdrawing a portion of funds for a real estate purchase. Tone was casual. Reminded her of the 5-7 year horizon, she agreed to hold off for now."
+    }
+  ]
+}

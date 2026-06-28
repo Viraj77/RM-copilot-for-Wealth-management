@@ -20,6 +20,8 @@ from src.tools import (
     get_rag_retriever_tool,
     get_suitability_checker_tool,
 )
+from src.tools.mood_predictor_tool import get_mood_predictor_tool
+from src.tools.live_price_tool import get_live_price_tool
 
 # ── Tool Registry ─────────────────────────────────────────────────────────────
 
@@ -30,6 +32,8 @@ def get_agent_tools():
         get_market_data_tool(),
         get_rag_retriever_tool(),
         get_suitability_checker_tool(),
+        get_mood_predictor_tool(),
+        get_live_price_tool(),
     ]
 
 
@@ -99,7 +103,7 @@ def call_model(state: AgentState) -> dict:
     # Use singleton LLM with tools bound
     llm_with_tools = _get_llm_with_tools()
 
-    with open("agent_input.log", "a") as f:
+    with open("agent_input.log", "a", encoding="utf-8") as f:
         f.write(f"--- AGENT CALLED ---\n")
         for m in messages:
             f.write(f"ROLE: {m.type}\n")

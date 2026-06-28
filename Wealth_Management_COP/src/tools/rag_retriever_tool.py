@@ -168,23 +168,12 @@ def rag_retrieve(
         results = []
         for r in retrieved:
             results.append({
-                "chunk_id": r.chunk.chunk_id,
-                "doc_id": r.chunk.doc_id,
                 "doc_type": r.chunk.doc_type.value,
                 "source": r.chunk.source,
                 "sensitivity": r.chunk.sensitivity.value,
                 "content": r.chunk.content,
                 "page_or_section": r.chunk.page_or_section,
                 "relevance_score": r.score,
-                # Citation-ready format for Recommendation.citations
-                "citation": {
-                    "doc_id": r.chunk.doc_id,
-                    "chunk_id": r.chunk.chunk_id,
-                    "doc_type": r.chunk.doc_type.value,
-                    "source": r.chunk.source,
-                    "chunk_text": r.chunk.content[:500],
-                    "page_or_section": r.chunk.page_or_section or "",
-                },
             })
 
         return {
@@ -205,7 +194,7 @@ def rag_retrieve(
 
     except Exception as exc:
         import traceback
-        with open("rag_error.log", "a") as f:
+        with open("rag_error.log", "a", encoding="utf-8") as f:
             f.write(f"RAG RETRIEVE ERROR: {str(exc)}\n")
             traceback.print_exc(file=f)
         return {
@@ -290,7 +279,7 @@ def get_rag_retriever_tool():
             rm_tier: str = "standard",
             sensitivity_max: Optional[str] = None,
             doc_types: Optional[str] = None,
-            top_k: int = 5,
+            top_k: int = 3,
             use_hybrid: bool = True,
         ) -> str:
             """
@@ -308,7 +297,7 @@ def get_rag_retriever_tool():
 
                 doc_types: Comma-separated doc types to filter on. Options: 'product',
                            'policy', 'research'. Leave empty to search all types.
-                top_k: Number of results to return (default: 5, max: 10).
+                top_k: Number of results to return (default: 3, max: 10).
                 use_hybrid: If True (default), fuse semantic and BM25 keyword search
                             for more robust retrieval (especially for exact-match queries).
 
