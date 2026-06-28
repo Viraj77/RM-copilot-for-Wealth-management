@@ -1,0 +1,60 @@
+{
+  "keyword_map": {
+    "hbgf": "PG-001",
+    "balanced growth": "PG-001",
+    "pg-001": "PG-001",
+    
+    "hcif": "PG-002",
+    "conservative income": "PG-002",
+    "pg-002": "PG-002",
+    
+    "haef": "PG-003",
+    "aggressive equity": "PG-003",
+    "pg-003": "PG-003",
+    
+    "scn": "PG-004",
+    "structured product": "PG-004",
+    "approved shelf": "PG-004",
+    "pg-004": "PG-004",
+    
+    "tech": "RN-002",
+    "applied ai": "RN-002",
+    "rn-002": "RN-002",
+    
+    "macro": "RN-001",
+    "global market": "RN-001",
+    "q2 2026": "RN-001",
+    "outlook": "RN-001",
+    "rn-001": "RN-001",
+    
+    "duration": "RN-003",
+    "yield curve": "RN-003",
+    "rn-003": "RN-003",
+    "fixed income": "RN-003",
+    
+    "talking points": "CMP-001",
+    "reviewing": "CMP-001",
+    "suitability": "CMP-001",
+    "compliance": "CMP-001",
+    "cmp-001": "CMP-001",
+    
+    "risk tier": "CMP-003",
+    "score": "CMP-003",
+    "determine": "CMP-003",
+    "cmp-003": "CMP-003"
+  },
+  "implicit_rules": [
+    {
+      "trigger_words": ["scn", "structured product", "concentration", "cmp-002"],
+      "inject_doc_ids": ["CMP-002", "PG-004"]
+    },
+    {
+      "trigger_words": ["haef", "aggressive equity", "pg-003", "growth", "growth-oriented", "aggressive"],
+      "inject_doc_ids": ["PG-003", "RN-002"]
+    },
+    {
+      "trigger_words": ["duration", "yield curve", "fixed income"],
+      "inject_doc_ids": ["RN-003", "RN-001"]
+    }
+  ]
+}

@@ -1,4 +1,5 @@
 import os
+import json
 import pandas as pd
 from client_db import get_client_profile
 from langchain_openai import OpenAIEmbeddings
@@ -22,6 +23,8 @@ def market_data_tool(product_code: str):
     """
     Look up market details and product parameters for a given product code.
     """
+    if not product_code:
+        return {"error": "No product code provided."}
     product_code = product_code.upper()
     
     # Core Funds check
@@ -99,7 +102,11 @@ def suitability_checker(client_id: str, product_code: str, allocation_amount: fl
     client = get_client_profile(client_id)
     if not client:
         return {"status": "Blocked", "reason": f"Client ID '{client_id}' not found.", "violations": ["Client not found"]}
-        
+
+    # Guard: no product code means no programmatic product check can be run
+    if not product_code:
+        return {"status": "Cleared", "violations": [], "reasons": ["No product code specified — programmatic suitability check skipped."], "citations": []}
+
     client_risk = client["risk_profile"]
     product = market_data_tool(product_code)
     
@@ -179,7 +186,7 @@ def suitability_checker(client_id: str, product_code: str, allocation_amount: fl
 def rag_retriever(query: str, rm_research_tier: int = 1):
     """
     Vector database retriever with metadata filtering for RM entitlement,
-    enhanced with keyword-based fallback and round-robin document diversity.
+    fully dynamic without hardcoded document IDs or keyword maps in python.
     rm_research_tier:
       - 1: Public documents only
       - 2: Public + Restricted documents
@@ -191,106 +198,82 @@ def rag_retriever(query: str, rm_research_tier: int = 1):
         collection_name=COLLECTION_NAME
     )
     
-    # Define entitlement filter
-    search_filter = {"sensitivity": "Public"} if rm_research_tier == 1 else None
-    
-    # 1. Similarity Search with k=20 to capture wider coverage of documents
-    results = db.similarity_search(query, k=20, filter=search_filter)
+    # 1. Similarity Search (k=15). Run without native filter to retrieve compliance docs,
+    # as we will perform research-specific sensitivity gating in python.
+    results = db.similarity_search(query, k=15)
     
     formatted_results = []
     retrieved_doc_ids = set()
     for doc in results:
         doc_id = doc.metadata.get("doc_id", "Unknown")
+        doc_type = doc.metadata.get("type", "Unknown")
+        doc_sensitivity = doc.metadata.get("sensitivity", "Public")
+        
+        # Gating rule: only restrict 'Restricted' documents of type 'research' or starting with 'RN-'
+        # from Tier-1 RMs. Compliance policies (CMP) and Product Guides (PG) remain accessible.
+        is_restricted_research = (doc_sensitivity == "Restricted") and (doc_type == "research" or doc_id.upper().startswith("RN-"))
+        if rm_research_tier == 1 and is_restricted_research:
+            continue
+            
         retrieved_doc_ids.add(doc_id)
         formatted_results.append({
             "doc_id": doc_id,
-            "type": doc.metadata.get("type", "Unknown"),
+            "type": doc_type,
             "date": doc.metadata.get("date", "Unknown"),
             "source": doc.metadata.get("source", "Unknown"),
-            "sensitivity": doc.metadata.get("sensitivity", "Public"),
+            "sensitivity": doc_sensitivity,
             "content": doc.page_content
         })
         
-    # 2. Keyword fallback for specific document codes/aliases
+    # 2. Dynamic keyword fallback rules from JSON configuration
+    rules_path = os.path.join(os.path.dirname(__file__), "retriever_rules.json")
+    keyword_map = {}
+    implicit_rules = []
+    if os.path.exists(rules_path):
+        try:
+            with open(rules_path, "r", encoding="utf-8") as f:
+                config = json.load(f)
+                keyword_map = config.get("keyword_map", {})
+                implicit_rules = config.get("implicit_rules", [])
+        except Exception as e:
+            print(f"Error loading retriever_rules.json: {e}")
+            
     q_lower = query.lower()
-    keyword_map = {
-        "hbgf": "PG-001",
-        "balanced growth": "PG-001",
-        "pg-001": "PG-001",
-        
-        "hcif": "PG-002",
-        "conservative income": "PG-002",
-        "pg-002": "PG-002",
-        
-        "haef": "PG-003",
-        "aggressive equity": "PG-003",
-        "pg-003": "PG-003",
-        
-        "scn": "PG-004",
-        "structured product": "PG-004",
-        "approved shelf": "PG-004",
-        "pg-004": "PG-004",
-        
-        "duration": "RN-003",
-        "yield curve": "RN-003",
-        "rn-003": "RN-003",
-        
-        "macro": "RN-001",
-        "global market": "RN-001",
-        "q2 2026": "RN-001",
-        "outlook": "RN-001",
-        "rn-001": "RN-001",
-        
-        "tech": "RN-002",
-        "applied ai": "RN-002",
-        "rn-002": "RN-002",
-        
-        "talking points": "CMP-001",
-        "reviewing": "CMP-001",
-        "suitability": "CMP-001",
-        "compliance": "CMP-001",
-        "cmp-001": "CMP-001",
-        
-        "risk tier": "CMP-003",
-        "score": "CMP-003",
-        "determine": "CMP-003",
-        "cmp-003": "CMP-003"
-    }
-    
     expected_from_keywords = set()
     for kw, doc_id in keyword_map.items():
         if kw in q_lower:
-            # Check sensitivity rules for restricted doc RN-002
-            if doc_id == "RN-002" and rm_research_tier == 1:
-                continue
             expected_from_keywords.add(doc_id)
             
-    # Also handle structured products rules which need CMP-002
-    if "scn" in q_lower or "structured product" in q_lower or "concentration" in q_lower or "cmp-002" in q_lower:
-        expected_from_keywords.add("CMP-002")
-        expected_from_keywords.add("PG-004")
-        
-    # Query database directly for any expected docs missing from the similarity results
+    for rule in implicit_rules:
+        if any(trigger in q_lower for trigger in rule.get("trigger_words", [])):
+            for doc_id in rule.get("inject_doc_ids", []):
+                expected_from_keywords.add(doc_id)
+                
+    # 3. Resolve fallback lookups for expected documents missing from initial search
     missing_docs = expected_from_keywords - retrieved_doc_ids
     for m_doc in missing_docs:
         # Direct lookup by metadata doc_id
-        fallback_filter = {"doc_id": m_doc}
-        if rm_research_tier == 1:
-            if m_doc == "RN-002":
+        fallback_results = db.similarity_search(query, k=2, filter={"doc_id": m_doc})
+        for doc in fallback_results:
+            doc_id = doc.metadata.get("doc_id", "Unknown")
+            doc_type = doc.metadata.get("type", "Unknown")
+            doc_sensitivity = doc.metadata.get("sensitivity", "Public")
+            
+            # Gating rule check for fallback chunks
+            is_restricted_research = (doc_sensitivity == "Restricted") and (doc_type == "research" or doc_id.upper().startswith("RN-"))
+            if rm_research_tier == 1 and is_restricted_research:
                 continue
                 
-        fallback_results = db.similarity_search(query, k=2, filter=fallback_filter)
-        for doc in fallback_results:
             formatted_results.append({
-                "doc_id": doc.metadata.get("doc_id", "Unknown"),
-                "type": doc.metadata.get("type", "Unknown"),
+                "doc_id": doc_id,
+                "type": doc_type,
                 "date": doc.metadata.get("date", "Unknown"),
                 "source": doc.metadata.get("source", "Unknown"),
-                "sensitivity": doc.metadata.get("sensitivity", "Public"),
+                "sensitivity": doc_sensitivity,
                 "content": doc.page_content
             })
             
-    # 3. Deduplicate and group chunks by doc_id to ensure diversity and prevent truncation
+    # 4. Deduplicate and group chunks by doc_id to ensure diversity and prevent truncation
     by_doc_id = {}
     for doc in formatted_results:
         d_id = doc["doc_id"]

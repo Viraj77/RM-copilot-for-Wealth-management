@@ -427,6 +427,72 @@
           "Product details (tenor, structure, risk rating) must match PG-004 row data",
           "Compliance_status field must be 'Blocked'"
         ]
+      },
+      {
+        "id": "FAITH-005",
+        "category": "Conservative Fund Review",
+        "client_id": "C-101",
+        "query": "Prepare talking points for Arthur Pendleton (C-101) reviewing his HCIF holdings",
+        "expected_source_doc_ids": ["PG-002", "CMP-001"],
+        "judge_criteria": [
+          "Cites PG-002 and compliance suitability policy CMP-001",
+          "Confirms conservative income terms (3.9% annual yield, 1% exit fee inside 180 days)"
+        ]
+      },
+      {
+        "id": "FAITH-006",
+        "category": "Risk Profiling Methodology",
+        "client_id": "C-101",
+        "query": "Walk me through how a client risk tier is determined and scored at Horizon Wealth",
+        "expected_source_doc_ids": ["CMP-003"],
+        "judge_criteria": [
+          "Cites risk profiling methodology document CMP-003",
+          "Correctly explains scoring and documentation processes"
+        ]
+      },
+      {
+        "id": "FAITH-007",
+        "category": "Technology & AI Research View",
+        "client_id": "C-302",
+        "query": "What is the house research view on the Technology and Applied AI sectors for a growth client?",
+        "expected_source_doc_ids": ["RN-002", "PG-003"],
+        "judge_criteria": [
+          "Cites sector deep dive restricted note RN-002",
+          "Links tech exposure to HAEF fund allocation of 28-38%"
+        ]
+      },
+      {
+        "id": "FAITH-008",
+        "category": "Three Fund Comparison",
+        "client_id": "C-204",
+        "query": "Compare HBGF, HCIF, and HAEF: risk profile, returns, and liquidity terms",
+        "expected_source_doc_ids": ["PG-001", "PG-002", "PG-003"],
+        "judge_criteria": [
+          "Compares all three core funds side by side in a structured comparison",
+          "Accurately extracts risk profiles, historical returns, and withdrawal penalties"
+        ]
+      },
+      {
+        "id": "FAITH-009",
+        "category": "Structured Products Shelf",
+        "client_id": "C-302",
+        "query": "List all fixed income and structured products available on the approved shelf with their risk ratings",
+        "expected_source_doc_ids": ["PG-004"],
+        "judge_criteria": [
+          "Cites the PG-004 structured products shelf guide",
+          "References specific structured note categories and ratings accurately"
+        ]
+      },
+      {
+        "id": "FAITH-010",
+        "category": "Macro Outlook & Recommendations",
+        "client_id": "C-204",
+        "query": "What is the Q2 2026 global macro outlook and how does it affect our asset allocation recommendations?",
+        "expected_source_doc_ids": ["RN-001"],
+        "judge_criteria": [
+          "Accurately summarizes Global Market Outlook views from RN-001",
+          "Explains regional overlays and allocation changes"
+        ]
       }
     ]
   },
