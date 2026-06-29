@@ -6,6 +6,26 @@ from agent import create_agent
 from langgraph.checkpoint.memory import MemorySaver
 from tools import market_data_tool, rag_retriever, suitability_checker
 from analytics import evaluate_retrieval, evaluate_suitability_gate, evaluate_faithfulness, compare_single_vs_multihop
+from ingest import ingest_all, ingest_file, extract_metadata
+
+# Update and initialize the Chroma DB on startup exactly once if it does not exist
+@st.cache_resource
+def startup_ingest():
+    import os
+    if not os.path.exists("chroma_db") or len(os.listdir("chroma_db")) == 0:
+        st.write("Initializing knowledge base index...")
+        ingest_all()
+        return "ingested"
+    else:
+        st.write("Preserving existing Chroma DB. Skipping startup ingestion.")
+        return "preserved"
+
+# Force a re-check if chroma_db is missing (clears stale cache from previous session)
+import os as _os
+if not _os.path.exists("chroma_db") or len(_os.listdir("chroma_db")) == 0:
+    startup_ingest.clear()
+
+startup_ingest()
 
 def render_client_brief(state):
     brief = state.get("final_brief")
@@ -131,7 +151,7 @@ st.markdown("""
 st.markdown("<h1 class='main-header'>Horizon Wealth Management</h1>", unsafe_allow_html=True)
 st.markdown("<p class='sub-header'>Relationship Manager Copilot & Compliance Advisor</p>", unsafe_allow_html=True)
 
-tab1, tab2 = st.tabs(["💼 Relationship Manager Workspace", "📊 Analytics & Benchmarks (Part B)"])
+tab1, tab2, tab3 = st.tabs(["💼 Relationship Manager Workspace", "📊 Analytics & Benchmarks (Part B)", "📚 Knowledge Base Manager"])
 
 with tab1:
     # Sidebar: Client selection & Parameters
@@ -148,15 +168,10 @@ with tab1:
     st.sidebar.text(f"RM Name: {client_profile['rm_name']}")
     st.sidebar.text(f"Research Entitlement: Tier {client_profile['rm_research_tier']}")
 
-    # Trade Scenario inputs
-    st.sidebar.header("Simulation Parameters")
-    simulate_trade = st.sidebar.checkbox("Simulate New Trade Recommendation", value=False)
+    # Default simulation parameters to False/None/0.0 as simulation functionality is removed
+    simulate_trade = False
     product_code = None
     allocation_amount = 0.0
-
-    if simulate_trade:
-        product_code = st.sidebar.text_input("Product Code (e.g. SCN-US-24, PG-002, HBGF)", value="SCN-US-24")
-        allocation_amount = st.sidebar.number_input("Proposed Allocation (USD)", min_value=0.0, value=25000.0, step=5000.0)
 
     # Display Client Profile & Portfolio
     col1, col2 = st.columns([1, 2])
@@ -182,7 +197,7 @@ with tab1:
         query_templates = [
             f"Prepare talking points for client {client_id}'s quarterly review",
             f"Summarize the portfolio risk for client {client_id}",
-            f"Is {product_code or 'SCN-US-24'} suitable for client {client_id}?" if simulate_trade else f"Is SCN-US-24 suitable for client {client_id}?",
+            f"Is SCN-US-24 suitable for client {client_id}?",
             f"What is the house research view on Technology and Applied AI sectors?"
         ]
         
@@ -337,16 +352,176 @@ with tab2:
     st.subheader("Analytical Evaluation & Benchmarking (Part B)")
     st.markdown("This tab displays evaluation results on the Golden Set for retrieval accuracy, suitability gate metrics, recommendation groundedness, and single-shot vs multi-hop retrieval comparisons.")
     
+    # Custom Evaluation Dataset File Uploader
+    uploaded_eval_file = st.file_uploader(
+        "Import Custom Evaluation Dataset (JSON)",
+        type=["json"],
+        help="Upload a custom eval_dataset.json file to run the tests against it."
+    )
+    
+    eval_data = None
+    if uploaded_eval_file is not None:
+        try:
+            import json
+            eval_data = json.load(uploaded_eval_file)
+            st.success("Successfully loaded custom evaluation dataset!")
+        except Exception as e:
+            st.error(f"Failed to parse custom JSON file: {e}")
+            
     col_a, col_b = st.columns(2)
     with col_a:
-        evaluate_retrieval()
+        evaluate_retrieval(eval_data)
     with col_b:
-        evaluate_suitability_gate()
+        evaluate_suitability_gate(eval_data)
         
     st.divider()
     
     col_c, col_d = st.columns(2)
     with col_c:
-        evaluate_faithfulness()
+        evaluate_faithfulness(eval_data)
     with col_d:
         compare_single_vs_multihop()
+
+with tab3:
+    st.subheader("📚 Knowledge Base Manager")
+    st.markdown("Browse current documents and ingest new resources into the Chroma DB Vector Store.")
+    
+    import os
+    docs_dir = "docs"
+    
+    st.write("### 📂 Current Knowledge Source Documents")
+    
+    file_list = []
+    if os.path.exists(docs_dir):
+        for root, dirs, files in os.walk(docs_dir):
+            for file in files:
+                file_path = os.path.join(root, file)
+                # Skip temp or system files if any
+                if file.startswith(".") or "__" in file_path:
+                    continue
+                    
+                try:
+                    size_kb = os.path.getsize(file_path) / 1024
+                    
+                    # Load text sample depending on extension to extract metadata
+                    sample_text = ""
+                    ext = os.path.splitext(file)[1].lower()
+                    if ext == ".txt":
+                        with open(file_path, "r", encoding="utf-8", errors="ignore") as f:
+                            sample_text = f.read(1000)
+                    elif ext == ".csv":
+                        with open(file_path, "r", encoding="utf-8", errors="ignore") as f:
+                            sample_text = f.read(1000)
+                    elif ext == ".docx":
+                        import docx
+                        doc = docx.Document(file_path)
+                        sample_text = "\n".join([p.text for p in doc.paragraphs[:5]])[:1000]
+                    elif ext == ".pdf":
+                        import pypdf
+                        reader = pypdf.PdfReader(file_path)
+                        if reader.pages:
+                            sample_text = reader.pages[0].extract_text()[:1000]
+                            
+                    meta = extract_metadata(sample_text, file_path)
+                    
+                    file_list.append({
+                        "Filename": file,
+                        "Doc ID": meta.get("doc_id", "N/A"),
+                        "Type": meta.get("type", "Unknown"),
+                        "Sensitivity": meta.get("sensitivity", "Public"),
+                        "Source": meta.get("source", "Unknown"),
+                        "Date": meta.get("date", "N/A"),
+                        "Size": f"{size_kb:.1f} KB",
+                        "Path": file_path
+                    })
+                except Exception as e:
+                    file_list.append({
+                        "Filename": file,
+                        "Doc ID": "N/A",
+                        "Type": "Unknown",
+                        "Sensitivity": "Public",
+                        "Source": "Unknown",
+                        "Date": "N/A",
+                        "Size": f"{os.path.getsize(file_path)/1024:.1f} KB",
+                        "Path": file_path
+                    })
+                
+    if file_list:
+        df_docs = pd.DataFrame(file_list)
+        st.dataframe(df_docs[["Filename", "Doc ID", "Type", "Sensitivity", "Source", "Date", "Size"]], use_container_width=True)
+        
+        # Detail view
+        selected_file = st.selectbox("Select a file to inspect", [f["Path"] for f in file_list])
+        if selected_file:
+            with st.expander("🔍 View Raw Sample Content", expanded=False):
+                ext = os.path.splitext(selected_file)[1].lower()
+                try:
+                    if ext == ".txt" or ext == ".csv":
+                        with open(selected_file, "r", encoding="utf-8", errors="ignore") as f:
+                            st.text(f.read(3000))
+                    elif ext == ".docx":
+                        import docx
+                        doc = docx.Document(selected_file)
+                        st.text("\n".join([p.text for p in doc.paragraphs[:20]]))
+                    elif ext == ".pdf":
+                        import pypdf
+                        reader = pypdf.PdfReader(selected_file)
+                        text_pages = [p.extract_text() or "" for p in reader.pages[:3]]
+                        st.text("\n--- Page Break ---\n".join(text_pages))
+                except Exception as e:
+                    st.error(f"Could not read preview: {e}")
+    else:
+        st.info("No documents found in knowledge base directory.")
+        
+    st.divider()
+    
+    st.write("### ➕ Upload & Ingest New Document")
+    col1_uploader, col2_selector = st.columns(2)
+    with col1_uploader:
+        uploaded_file = st.file_uploader(
+            "Choose a document file to add to knowledge base",
+            type=["txt", "pdf", "docx", "csv"]
+        )
+    with col2_selector:
+        category = st.selectbox(
+            "Document Category / Subfolder",
+            ["Product Guides", "Compliance", "Research", "General Root"]
+        )
+        
+    if uploaded_file is not None:
+        folder_mapping = {
+            "Product Guides": "docs/product_guides",
+            "Compliance": "docs/compliance",
+            "Research": "docs/research",
+            "General Root": "docs"
+        }
+        target_folder = folder_mapping[category]
+        os.makedirs(target_folder, exist_ok=True)
+        target_path = os.path.join(target_folder, uploaded_file.name)
+        
+        st.info(f"Target Save Location: `{target_path}`")
+        
+        if st.button("Index & Persist to Chroma DB", type="primary"):
+            try:
+                # Save the file first
+                with open(target_path, "wb") as f:
+                    f.write(uploaded_file.getbuffer())
+                
+                st.success(f"File saved to `{target_path}` successfully!")
+                
+                # Now run the ingest function
+                with st.spinner("Parsing, chunking, and indexing new document..."):
+                    res = ingest_file(target_path)
+                    
+                st.balloons()
+                st.success(f"✅ Ingestion successful! Document split into {res['chunks_count']} chunks and persisted to Chroma DB.")
+                
+                # Show parsed metadata
+                st.write("**Extracted Metadata Details**:")
+                st.json(res["metadata"])
+                
+                # Rerun to update the file list
+                time.sleep(2)
+                st.rerun()
+            except Exception as e:
+                st.error(f"Ingestion failed: {e}")

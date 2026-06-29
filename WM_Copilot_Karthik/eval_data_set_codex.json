@@ -1,0 +1,282 @@
+{
+  "_meta": {
+    "title": "Horizon RM Copilot - Codex Evaluation Dataset",
+    "version": "1.2",
+    "created": "2026-06-28",
+    "description": "A compact 15-case golden evaluation dataset structured for UI compatibility (analytics.py). All 15 cases are consolidated into the three sections that the UI evaluation functions read: retrieval (evaluate_retrieval), suitability_gate (evaluate_suitability_gate), and faithfulness (evaluate_faithfulness). Cases originally in compliance_block, entitlement_filtering, multihop_retrieval, edge_cases, and hitl_escalation sections have been remapped to the appropriate UI-readable section with correct field names.",
+    "case_count": 15,
+    "sections": [
+      "retrieval",
+      "suitability_gate",
+      "faithfulness"
+    ],
+    "source_context": {
+      "capstone_brief": "Capstone-P6-Relationship-Manager-WealthMgmt-LangGraph.pdf",
+      "knowledge_base_dir": "docs/",
+      "agent_files": [
+        "agent.py",
+        "tools.py",
+        "client_db.py"
+      ]
+    },
+    "clients": {
+      "C-101": {
+        "name": "Arthur Pendleton",
+        "risk_profile": "Conservative",
+        "rm_tier": 1
+      },
+      "C-204": {
+        "name": "Eleanor Vance",
+        "risk_profile": "Balanced",
+        "rm_tier": 2
+      },
+      "C-302": {
+        "name": "Marcus Vance",
+        "risk_profile": "Aggressive",
+        "rm_tier": 2
+      }
+    },
+    "products": {
+      "PG-001": "Horizon Balanced Growth Fund (HBGF) - Moderate, Risk 3",
+      "PG-002": "Horizon Conservative Income Fund (HCIF) - Low-Moderate, Risk 2",
+      "PG-003": "Horizon Aggressive Equity Fund (HAEF) - High-growth equity fund",
+      "SCN-US-24": "Structured Capital Note (US Large Cap Index, 24M) - Growth/Aggressive only"
+    },
+    "v1_1_section_mapping": {
+      "note": "v1.1 had 8 sections; 5 of them were silently ignored by analytics.py (evaluate_retrieval/evaluate_suitability_gate/evaluate_faithfulness). v1.2 consolidates all 15 cases into the 3 UI-readable sections.",
+      "compliance_block": "remapped to suitability_gate — field expected_compliance_status renamed to expected_status",
+      "entitlement_filtering": "remapped to retrieval — may_contain/must_contain promoted to expected_doc_ids",
+      "multihop_retrieval": "remapped to retrieval — final_expected_docs promoted to expected_doc_ids",
+      "edge_cases": "remapped to faithfulness — expected_retrieved_doc_ids promoted to expected_source_doc_ids, expected_behavior promoted to judge_criteria",
+      "hitl_escalation": "remapped to suitability_gate — expected_pre_interrupt_compliance_status renamed to expected_status"
+    }
+  },
+  "retrieval": {
+    "description": "Tests whether the RAG retriever returns the correct source documents for a given query and RM entitlement tier. Pass criterion: all expected_doc_ids appear in the retrieved documents and must_not_contain documents are absent. Includes standard retrieval cases, entitlement filtering cases (Tier-1 vs Tier-2 access control), and multi-hop retrieval cases.",
+    "test_cases": [
+      {
+        "id": "RET-CODEX-001",
+        "category": "Product Guide - Balanced Fund Review",
+        "query": "Prepare talking points for Eleanor Vance (C-204) reviewing her HBGF investment.",
+        "rm_tier": 2,
+        "expected_doc_ids": [
+          "PG-001",
+          "CMP-001"
+        ],
+        "must_not_contain": [],
+        "rationale": "A client review for a Balanced client holding HBGF should retrieve the HBGF product guide and suitability compliance policy.",
+        "reference_docs": [
+          "docs/product_guides/PG-001_Balanced_Growth_Fund.docx",
+          "docs/compliance/CMP-001_Suitability_Compliance_Policy.docx"
+        ]
+      },
+      {
+        "id": "RET-CODEX-002",
+        "category": "Cross-Fund Comparison",
+        "query": "Compare HBGF, HCIF, and HAEF by risk profile, expected return/yield, and liquidity terms.",
+        "rm_tier": 2,
+        "expected_doc_ids": [
+          "PG-001",
+          "PG-002",
+          "PG-003"
+        ],
+        "must_not_contain": [],
+        "rationale": "A three-fund comparison should retrieve all three core fund product guides.",
+        "reference_docs": [
+          "docs/product_guides/PG-001_Balanced_Growth_Fund.docx",
+          "docs/product_guides/PG-002_Conservative_Income_Fund.txt",
+          "docs/product_guides/PG-003_Aggressive_Equity_Fund.pdf"
+        ]
+      },
+      {
+        "id": "RET-CODEX-003",
+        "category": "Fixed Income Market Research",
+        "query": "What is the house view on fixed income duration and yield curve positioning for Q2 2026?",
+        "rm_tier": 2,
+        "expected_doc_ids": [
+          "RN-001",
+          "RN-003"
+        ],
+        "must_not_contain": [],
+        "rationale": "Duration and yield curve views are covered by both the Q2 market outlook and the fixed income outlook.",
+        "reference_docs": [
+          "docs/research/RN-001_Q2_2026_Market_Outlook.pdf",
+          "docs/research/RN-003_Fixed_Income_Outlook.docx"
+        ]
+      },
+      {
+        "id": "ENT-CODEX-001",
+        "category": "Entitlement Filtering - Tier-1 RM Restricted Research Blocked",
+        "query": "For Arthur Pendleton (C-101), give me the detailed Technology and Applied AI sector deep dive.",
+        "rm_tier": 1,
+        "expected_doc_ids": [],
+        "must_not_contain": [
+          "RN-002"
+        ],
+        "rationale": "RN-002 is restricted research and should be filtered for a Tier-1 RM. No expected docs enforced; the key pass criterion is that RN-002 is absent.",
+        "reference_docs": []
+      },
+      {
+        "id": "ENT-CODEX-002",
+        "category": "Entitlement Filtering - Tier-2 RM Restricted Research Allowed",
+        "query": "For Marcus Vance (C-302), summarize the Technology and Applied AI research view and how it relates to HAEF.",
+        "rm_tier": 2,
+        "expected_doc_ids": [
+          "RN-002",
+          "PG-003"
+        ],
+        "must_not_contain": [],
+        "rationale": "Marcus Vance's RM has Tier-2 entitlement, so RN-002 should be retrievable alongside HAEF product guidance.",
+        "reference_docs": [
+          "docs/research/RN-002_Sector_Deep_Dive_Tech_AI.txt",
+          "docs/product_guides/PG-003_Aggressive_Equity_Fund.pdf"
+        ]
+      },
+      {
+        "id": "MULTI-CODEX-001",
+        "category": "Multi-Hop - Fixed Income Market Outlook to Fixed Income Note",
+        "query": "What is the house view on fixed income duration and yield curve positioning for Q2 2026?",
+        "rm_tier": 2,
+        "expected_doc_ids": [
+          "RN-001",
+          "RN-003"
+        ],
+        "must_not_contain": [],
+        "rationale": "RN-001 discusses the Q2 macro outlook and cross-references RN-003 for detailed fixed income duration analysis. Both must be retrieved for a complete answer.",
+        "reference_docs": [
+          "docs/research/RN-001_Q2_2026_Market_Outlook.pdf",
+          "docs/research/RN-003_Fixed_Income_Outlook.docx"
+        ]
+      }
+    ]
+  },
+  "suitability_gate": {
+    "description": "Tests the programmatic suitability_checker function against known client/product/amount combinations. Validates Cleared / Needs Review / Blocked classifications and violation codes. Also includes compliance escalation cases (originally compliance_block) and HITL escalation triggers (originally hitl_escalation), all normalised to expected_status + expected_violations fields.",
+    "test_cases": [
+      {
+        "id": "SUIT-CODEX-001",
+        "category": "Cleared - Conservative Fund for Conservative Client",
+        "client_id": "C-101",
+        "product_code": "HCIF",
+        "allocation_amount": 10000,
+        "expected_status": "Cleared",
+        "expected_violations": [],
+        "rationale": "HCIF is suitable for Conservative and Balanced clients, and Arthur Pendleton is Conservative.",
+        "reference_rule": "PG-002 suitable_risk_profiles = Conservative;Balanced"
+      },
+      {
+        "id": "SUIT-CODEX-002",
+        "category": "Blocked - Structured Note Profile Mismatch",
+        "client_id": "C-101",
+        "product_code": "SCN-US-24",
+        "allocation_amount": 10000,
+        "expected_status": "Blocked",
+        "expected_violations": [
+          "INCOMPATIBLE_RISK_PROFILE",
+          "RULE-016"
+        ],
+        "rationale": "SCN-US-24 is suitable only for Growth/Aggressive clients. Arthur Pendleton is Conservative.",
+        "reference_rule": "CMP-002 RULE-016: SCN products require Growth or Aggressive risk profile"
+      },
+      {
+        "id": "SUIT-CODEX-003",
+        "category": "Needs Review - Structured Product Concentration",
+        "client_id": "C-302",
+        "product_code": "SCN-US-24",
+        "allocation_amount": 100000,
+        "expected_status": "Needs Review",
+        "expected_violations": [
+          "RULE-003"
+        ],
+        "rationale": "Marcus Vance is Aggressive, but a $100,000 SCN allocation breaches the 15% structured product concentration cap.",
+        "reference_rule": "CMP-002 RULE-003: Max 15% of total portfolio value in a single structured product issuer/counterparty exposure"
+      },
+      {
+        "id": "SUIT-CODEX-004",
+        "category": "Cleared - Balanced Client De-risking into Conservative Fund",
+        "client_id": "C-204",
+        "product_code": "PG-002",
+        "allocation_amount": 30000,
+        "expected_status": "Cleared",
+        "expected_violations": [],
+        "rationale": "Eleanor Vance (Balanced) adding HCIF (Risk 2, suitable for Conservative/Balanced) is a conservative de-risking move well within concentration limits.",
+        "reference_rule": "PG-002 suitable_risk_profiles = Conservative;Balanced"
+      },
+      {
+        "id": "SUIT-CODEX-005",
+        "category": "Blocked - Aggressive-Only Fund for Conservative Client",
+        "client_id": "C-101",
+        "product_code": "PG-003",
+        "allocation_amount": 5000,
+        "expected_status": "Blocked",
+        "expected_violations": [
+          "INCOMPATIBLE_RISK_PROFILE"
+        ],
+        "rationale": "HAEF (Risk 5, Aggressive only) is incompatible with Arthur Pendleton's Conservative risk profile regardless of allocation amount.",
+        "reference_rule": "PG-003 suitable_risk_profiles = Aggressive only"
+      },
+      {
+        "id": "HITL-CODEX-001",
+        "category": "HITL Escalation - SCN Concentration Review Needs Review",
+        "client_id": "C-302",
+        "product_code": "SCN-US-24",
+        "allocation_amount": 100000,
+        "expected_status": "Needs Review",
+        "expected_violations": [
+          "RULE-003"
+        ],
+        "rationale": "Marcus Vance is Aggressive (passes RULE-016). However $100,000 on his ~$350,000 portfolio exceeds the 15% structured note cap (RULE-003), triggering a Needs Review and HITL interrupt.",
+        "reference_rule": "CMP-002 RULE-003: Max 15% of total portfolio in structured notes"
+      }
+    ]
+  },
+  "faithfulness": {
+    "description": "LLM-as-judge cases. The agent response should be grounded in the retrieved evidence and cite the expected source documents. Also includes the out-of-context edge case (originally edge_cases), remapped here as an agent pipeline faithfulness test.",
+    "min_groundedness_score": 0.8,
+    "min_citation_score": 0.7,
+    "test_cases": [
+      {
+        "id": "FAITH-CODEX-001",
+        "category": "Talking Points - Balanced Fund",
+        "client_id": "C-204",
+        "query": "Prepare talking points for Eleanor Vance's (C-204) quarterly review of her HBGF holding.",
+        "expected_source_doc_ids": [
+          "PG-001",
+          "CMP-001"
+        ],
+        "judge_criteria": [
+          "Talking points cite HBGF and suitability policy sources.",
+          "The answer references Eleanor's Balanced risk profile.",
+          "No fabricated fund metrics, product names, or compliance statuses are introduced."
+        ]
+      },
+      {
+        "id": "FAITH-CODEX-002",
+        "category": "Technology and AI Research View",
+        "client_id": "C-302",
+        "query": "For Marcus Vance (C-302), summarize the Technology and Applied AI research view and how it relates to HAEF.",
+        "expected_source_doc_ids": [
+          "RN-002",
+          "PG-003"
+        ],
+        "judge_criteria": [
+          "The answer cites RN-002 for technology and Applied AI research.",
+          "The answer connects the view to HAEF using PG-003.",
+          "Any sector allocation claim is grounded in retrieved evidence, including the 28-38% technology/applied AI exposure when used."
+        ]
+      },
+      {
+        "id": "EDGE-CODEX-001",
+        "category": "Edge Case - Out-of-Context Query Bypass",
+        "client_id": "C-101",
+        "query": "What is the capital of France?",
+        "expected_source_doc_ids": [],
+        "judge_criteria": [
+          "Agent routes directly to the bypass response without portfolio lookup, RAG retrieval, or compliance checking.",
+          "Response must be exactly: 'I can only provide support related to wealth management and client advisory queries.'",
+          "No wealth management documents (PG-001 through PG-004, CMP-001 through CMP-003, RN-001 through RN-003) should appear in retrieved_evidence."
+        ]
+      }
+    ]
+  }
+}

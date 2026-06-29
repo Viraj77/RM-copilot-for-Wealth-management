@@ -135,3 +135,28 @@ def test_out_of_context_query():
     assert state.get("client_profile") is None  # gather_portfolio bypassed
     assert len(state.get("retrieved_evidence", [])) == 0  # gather_research bypassed
 
+def test_ingest_file():
+    import os
+    from ingest import ingest_file
+    
+    # Create a temporary file under docs
+    temp_file = "docs/test_temp_doc_999.txt"
+    try:
+        with open(temp_file, "w", encoding="utf-8") as f:
+            f.write("Document ID: TEMP-999\nType: Research\nDate: 2026-06-27\nSource: Test Ingest\nSensitivity: Public\nThis is a temporary test document about the anti-gravity technology and stock investment trends in 2026.")
+        
+        res = ingest_file(temp_file)
+        assert res is not None
+        assert res["chunks_count"] > 0
+        assert res["metadata"]["doc_id"] == "TEMP-999"
+        
+        # Test retrieval
+        retrieved = rag_retriever("anti-gravity technology stock investment trends", rm_research_tier=1)
+        doc_ids = [doc["doc_id"] for doc in retrieved]
+        assert "TEMP-999" in doc_ids
+        
+    finally:
+        if os.path.exists(temp_file):
+            os.remove(temp_file)
+
+

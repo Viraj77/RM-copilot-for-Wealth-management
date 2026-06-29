@@ -172,6 +172,15 @@ def ingest_all():
     if not os.path.exists(docs_dir):
         print(f"Error: Docs directory '{docs_dir}' not found.")
         return
+
+    # Clear existing Chroma DB to prevent duplicate chunks on re-ingestion / app restart
+    import shutil
+    if os.path.exists(PERSIST_DIR):
+        try:
+            shutil.rmtree(PERSIST_DIR)
+            print(f"Cleared existing Chroma DB at {PERSIST_DIR}")
+        except Exception as e:
+            print(f"Error clearing {PERSIST_DIR}: {e}")
         
     all_documents = []
     
@@ -238,6 +247,55 @@ def ingest_all():
     )
     db.persist()
     print(f"Successfully persisted ChromaDB to {PERSIST_DIR}")
+
+def ingest_file(file_path):
+    """
+    Ingests, chunks, extracts metadata, embeds, and adds a single document file to the existing Chroma DB.
+    """
+    if not os.path.exists(file_path):
+        raise FileNotFoundError(f"File not found: {file_path}")
+        
+    ext = os.path.splitext(file_path)[1].lower()
+    all_documents = []
+    
+    if ext == ".csv":
+        rows = load_csv_rows(file_path)
+        for content, meta in rows:
+            all_documents.append(Document(page_content=content, metadata=meta))
+    else:
+        if ext == ".txt":
+            text = load_txt(file_path)
+        elif ext == ".docx":
+            text = load_docx(file_path)
+        elif ext == ".pdf":
+            text = load_pdf(file_path)
+        else:
+            raise ValueError(f"Unsupported file type: {ext}")
+            
+        meta = extract_metadata(text, file_path)
+        all_documents.append(Document(page_content=text, metadata=meta))
+        
+    token_splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(
+        chunk_size=500,
+        chunk_overlap=50,
+        encoding_name="cl100k_base"
+    )
+    final_chunks = token_splitter.split_documents(all_documents)
+    
+    embeddings = get_embeddings()
+    db = Chroma(
+        persist_directory=PERSIST_DIR,
+        embedding_function=embeddings,
+        collection_name=COLLECTION_NAME
+    )
+    db.add_documents(final_chunks)
+    db.persist()
+    print(f"Successfully added {len(final_chunks)} chunks from {file_path} to ChromaDB.")
+    
+    return {
+        "chunks_count": len(final_chunks),
+        "metadata": all_documents[0].metadata if all_documents else {}
+    }
 
 if __name__ == "__main__":
     ingest_all()

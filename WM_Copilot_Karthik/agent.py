@@ -90,6 +90,8 @@ def classify_intent_node(state: AgentState) -> Dict[str, Any]:
     - Asking to prepare a formal talking points brief for a specific client
     - Involves a specific allocation amount (trade simulation)
     - Needs a compliance gate check for a specific client+product pair
+    - Asks to review, update, or summarise a specific client's past activity or account history ("What happened in C-204's last review?")
+    - Requests a rebalancing plan or portfolio action for a named client ("Rebalance C-101's portfolio")
 
     Choose "freeform" if the request is:
     - A comparison of two or more funds ("Compare HBGF and HCIF")
@@ -97,6 +99,14 @@ def classify_intent_node(state: AgentState) -> Dict[str, Any]:
     - A general market/sector research question ("house view on fixed income", "tech outlook")
     - An educational or methodology question ("how is risk tier calculated?")
     - A broad summary with no specific client action intent
+    - A hybrid query containing both a general research/macro outlook part and a client suitability/exposure question (e.g. "What is the house view on fixed income duration? Should Eleanor Vance add any fixed income exposure?")
+    - A product shelf or product listing question, even if filtered by risk profile ("List all products suitable for a Growth profile", "What fixed income options are available?")
+    - A stress test, scenario analysis, or hypothetical market impact question ("What happens to HAEF in a rate-hike scenario?")
+    - A benchmark or relative-performance comparison ("How does C-204's portfolio compare to the benchmark?")
+    - A multi-client advisory question without a specific action ("Should C-101 or C-302 hold more equities?")
+
+    Tie-breaker rule: If the request is genuinely ambiguous, default to "freeform" UNLESS it explicitly asks
+    to recommend, allocate, buy, or prepare a client brief for a named client — in which case use "structured".
 
     Note: if force_structured={force_structured}, ALWAYS return response_mode="structured".
 
@@ -212,6 +222,8 @@ def check_suitability_node(state: AgentState) -> Dict[str, Any]:
     2. Is there restricted research accessed by an unauthorized RM (e.g. Tier 2 research for Tier 1 RM)? Note that our retriever filters this, but verify.
     3. Is this recommendation suitable and grounded?
     
+    Important: Informational requests (comparing funds, listing products, or explaining rules) are NOT investment recommendations and do NOT trigger suitability blocks, even if a client profile is in context. Only flag suitability mismatches as 'Blocked' or 'Needs Review' if the RM is explicitly asking to recommend, buy, or allocate a specific product to the client.
+    
     If there is a license restriction or general compliance issue, specify it.
     """
     
@@ -281,8 +293,9 @@ def synthesize_node(state: AgentState) -> Dict[str, Any]:
     1. Summarize the portfolio holdings and risk profile clearly.
     2. Under 'recommendations', provide recommendations with rationale, suitability assessment, and precise citations to the document IDs.
     3. Set 'compliance_status' based on the Compliance Report status.
-    4. Provide pre-approved talking points for the RM. All talking points must be pre-approved or directly derived from product guides (e.g. PG-001/PG-002/PG-003 Section 15 or similar). Do not make up facts.
+    4. Provide pre-approved talking points for the RM. All talking points must be pre-approved or directly derived from product guides (e.g. PG-001/PG-002/PG-003 Section 15 or similar). Do not make up facts. Limit the list strictly to a maximum of 3 highly concise bullet points focusing only on client-facing talking points. Omit relationship manager meta-text or administrative compliance summaries.
     5. State a clear disclaimer: "Decision support for RMs, not automated advice."
+    6. Grounding Constraints: All rationales, suitability remarks, and talking points must rely strictly and solely on the facts, numbers, rates, and parameters directly present in the Retrieved Knowledge / Evidence. Do not extrapolate, infer, or assume details not present. If the evidence does not state a metric or detail, explicitly note that it is not documented, rather than fabricating a figure.
     
     Generate the structured brief.
     """
@@ -328,7 +341,11 @@ def free_form_answer_node(state: AgentState) -> Dict[str, Any]:
 
     client_profile = state.get("client_profile")
     portfolio_section = ""
-    if client_profile:
+    # Only include client holdings details if the query explicitly refers to the client, portfolio, or client review.
+    query_lower = state["query"].lower()
+    has_client_ref = "client" in query_lower or "portfolio" in query_lower or "holdings" in query_lower or (client_profile and client_profile.get("client_id", "").lower() in query_lower)
+    
+    if client_profile and has_client_ref:
         holdings_lines = "\n".join(
             [f"  - {h['product_name']} ({h['product_code']}): USD {h['allocation_amount']:,.2f} [{h['asset_class']}]"
              for h in client_profile.get("holdings", [])]
@@ -343,7 +360,7 @@ def free_form_answer_node(state: AgentState) -> Dict[str, Any]:
 
     prompt = f"""
     You are an expert Wealth Management Research Analyst assisting a Relationship Manager.
-    Answer the following RM request with a comprehensive, well-structured markdown response.
+    Answer the following RM request directly and concisely. Do not include boilerplate greetings, introductory summaries, or off-topic meta-commentary.
 
     Request: "{state['query']}"
     {portfolio_section}
@@ -352,13 +369,15 @@ def free_form_answer_node(state: AgentState) -> Dict[str, Any]:
     {evidence_text}
 
     Response Guidelines:
-    1. Use markdown formatting: headers (##, ###), bullet lists, and **bold** for key terms.
-    2. Use comparison tables (| Column | ... |) where relevant, e.g. for fund or portfolio comparisons.
-    3. Cite source documents inline using brackets, e.g. [PG-001], [RN-003], [CMP-002].
-    4. If comparing funds or portfolios, structure the response with a clear side-by-side section.
-    5. If analysing market/sector views, clearly state the source note and date.
-    6. Do NOT fabricate performance numbers or facts not found in the evidence.
-    7. End with a brief **Disclaimer**: "This is an analytical summary for RM reference. Not client-specific investment advice."
+    1. Be extremely concise and focus entirely on answering the request. Limit the response only to relevant facts directly stated in the retrieved evidence. Keep it short (2-4 sentences max) and highly specific.
+       - **Important constraint**: If the request asks to list all products, structured products, or fixed income options, do NOT dump a long table or list of all rows. Instead, summarize the categories (e.g., Structured Capital Notes, Fixed Income) and list only the top 5 most prominent products as examples. State that the full shelf of 160+ items is available in the system registry.
+    2. Use markdown formatting: headers (##, ###), bullet lists, and **bold** for key terms.
+    3. Use comparison tables (| Column | ... |) where relevant, e.g. for fund or portfolio comparisons.
+    4. Cite source documents inline using brackets, e.g. [PG-001], [RN-003], [CMP-002].
+    5. If comparing funds or portfolios, structure the response with a clear side-by-side section. Keep it highly concise — limit the description of each compared fund to 2 lines max, using a bulleted format.
+    6. If analysing market/sector views, clearly state the source note and date.
+    7. Do NOT fabricate, extrapolate, or assume performance numbers or facts not directly stated in the evidence. If the requested details are not present, explicitly state that they are not documented in the sources.
+    8. End with a brief **Disclaimer**: "This is an analytical summary for RM reference. Not client-specific investment advice."
 
     Produce the response now:
     """
@@ -378,12 +397,14 @@ def human_review_node(state: AgentState) -> Dict[str, Any]:
     When resumed, it updates the state based on human inputs.
     """
     notes = state.get("review_notes", "No notes provided.")
-    brief = state.get("draft_brief", {}).copy()
+    brief = (state.get("draft_brief") or {}).copy()
     
     # If the human RM approves/overrides, we cleared the status
     # In a real app, the RM inputs are passed into state updates.
     # We will mark it cleared if the RM chooses to approve.
     brief["compliance_status"] = "Cleared"
+    if "talking_points" not in brief:
+        brief["talking_points"] = []
     brief["talking_points"].append(f"RM Note: Approved with review notes: {notes}")
     
     return {
@@ -429,7 +450,7 @@ def route_classify_intent(state: AgentState) -> str:
     return "gather_portfolio"
 
 # Assemble Graph
-def create_agent(checkpointer=None):
+def create_agent(checkpointer=None, interrupt_before_nodes=["human_review"]):
     workflow = StateGraph(AgentState)
 
     # Add Nodes
@@ -480,10 +501,10 @@ def create_agent(checkpointer=None):
     if checkpointer is None:
         checkpointer = MemorySaver()
 
-    # Compile graph with interrupt before human review
+    # Compile graph with custom interrupt list (can be empty to bypass pauses during eval)
     app = workflow.compile(
         checkpointer=checkpointer,
-        interrupt_before=["human_review"]
+        interrupt_before=interrupt_before_nodes
     )
 
     return app
