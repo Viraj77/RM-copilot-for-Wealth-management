@@ -31,6 +31,7 @@ from src.tools.portfolio_tool import portfolio_lookup
 from app.components.upload_view import render_upload_view
 from app.components.client_info_view import render_client_info_view
 from app.components.market_data_view import render_market_data_view
+from app.components.evaluation_view import render_evaluation_view
 
 
 # ── Configuration & Setup ─────────────────────────────────────────────────────
@@ -127,7 +128,8 @@ st.sidebar.markdown("### 🧭 Navigation")
 nav_selection = st.sidebar.radio("Go to", [
     "📊 Client Dashboard", 
     "📈 Market Data", 
-    "📂 Knowledge Base Upload"
+    "📂 Knowledge Base Upload",
+    "🧪 RAGAS Evaluation"
 ])
 st.sidebar.divider()
 
@@ -138,6 +140,10 @@ st.sidebar.info(
 
 if nav_selection == "📂 Knowledge Base Upload":
     render_upload_view()
+elif nav_selection == "📈 Market Data":
+    render_market_data_view()
+elif nav_selection == "🧪 RAGAS Evaluation":
+    render_evaluation_view()
 else:
     st.title("💼 AI Wealth Manager Dashboard")
     st.markdown(
