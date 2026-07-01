@@ -41,7 +41,9 @@
     "risk tier": "CMP-003",
     "score": "CMP-003",
     "determine": "CMP-003",
-    "cmp-003": "CMP-003"
+    "cmp-003": "CMP-003",
+    
+    "anti-gravity": "TEMP-999"
   },
   "implicit_rules": [
     {

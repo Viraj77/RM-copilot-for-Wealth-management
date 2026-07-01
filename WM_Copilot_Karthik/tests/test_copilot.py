@@ -32,7 +32,7 @@ def test_suitability_checker():
     assert "RULE-016" in res2["violations"]
 
 def test_rag_retriever():
-    res = rag_retriever("Balanced Growth Fund", rm_research_tier=2)
+    res = rag_retriever("Balanced Growth Fund", rm_access_to_private=True)
     assert len(res) > 0
     # The first document or some documents should carry PG-001
     doc_ids = [doc["doc_id"] for doc in res]
@@ -151,7 +151,7 @@ def test_ingest_file():
         assert res["metadata"]["doc_id"] == "TEMP-999"
         
         # Test retrieval
-        retrieved = rag_retriever("anti-gravity technology stock investment trends", rm_research_tier=1)
+        retrieved = rag_retriever("anti-gravity technology stock investment trends", rm_access_to_private=False)
         doc_ids = [doc["doc_id"] for doc in retrieved]
         assert "TEMP-999" in doc_ids
         

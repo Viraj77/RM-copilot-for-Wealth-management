@@ -75,7 +75,13 @@ def render_client_brief(state):
             st.markdown(f"- {tp}")
     else:
         st.info("No talking points generated.")
-        
+
+    if state.get("retrieved_evidence"):
+        with st.expander("📚 Cited Sources & Retrieved Evidence", expanded=False):
+            for i, doc in enumerate(state["retrieved_evidence"]):
+                st.markdown(f"**[{i+1}] Source: {doc['doc_id']}** (Category: {doc['type']}, Sensitivity: {doc['sensitivity']})")
+                st.info(doc["content"])
+                    
     st.markdown("---")
     st.caption(brief.get("disclaimer", "Decision support for RMs, not automated advice."))
 

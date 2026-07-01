@@ -94,11 +94,16 @@ def market_data_tool(product_code: str):
 
 def suitability_checker(client_id: str, product_code: str, allocation_amount: float = 0.0):
     """
-    Programmatic compliance check comparing a product and trade details to a client profile.
+    Programmatic and LLM-assisted compliance check comparing a product and trade details to a client profile.
     Checks:
     1. Product suitability list vs Client Risk Profile.
     2. Restricted list rules (like Structured Product Caps / concentration rules).
     """
+    import re
+    from typing import List, Literal
+    from pydantic import BaseModel, Field
+    from langchain_openai import ChatOpenAI
+
     client = get_client_profile(client_id)
     if not client:
         return {"status": "Blocked", "reason": f"Client ID '{client_id}' not found.", "violations": ["Client not found"]}
@@ -112,84 +117,182 @@ def suitability_checker(client_id: str, product_code: str, allocation_amount: fl
     
     if "error" in product:
         return {"status": "Blocked", "reason": product["error"], "violations": ["Product not found"]}
+
+    # Programmatic fallback implementation in case LLM fails
+    def programmatic_fallback():
+        violations = []
+        reasons = []
+        citations = []
         
-    violations = []
-    reasons = []
-    citations = []
-    
-    # 1. Basic Risk Profile Suitability Check
-    suitable_profiles = [x.strip() for x in product["suitable_risk_profiles"].split(";")]
-    if client_risk not in suitable_profiles:
-        violations.append("INCOMPATIBLE_RISK_PROFILE")
-        reasons.append(f"Product '{product_code}' is suitable for {product['suitable_risk_profiles']} but client risk profile is '{client_risk}'.")
-        citations.append(f"{product['product_code']} Product Guide")
-        
-    # Calculate portfolio statistics for concentration check
-    holdings = client["holdings"]
-    total_val = sum(h["allocation_amount"] for h in holdings) + allocation_amount
-    
-    # 2. Check Restricted List Rules (CMP-002)
-    # We will read rules from CSV and execute them programmatically
-    if os.path.exists(CMP002_CSV_PATH):
-        try:
-            df = pd.read_csv(CMP002_CSV_PATH)
+        suitable_profiles = [x.strip() for x in product["suitable_risk_profiles"].split(";")]
+        if client_risk not in suitable_profiles:
+            violations.append("INCOMPATIBLE_RISK_PROFILE")
+            reasons.append(f"Product '{product_code}' is suitable for {product['suitable_risk_profiles']} but client risk profile is '{client_risk}'.")
+            citations.append(f"{product['product_code']} Product Guide")
             
-            # Rule checking logic:
-            # - SCN check (Structured Capital Note)
-            if "SCN" in product_code or product["product_category"] == "Structured Product":
-                # Check RULE-016: requires Growth/Aggressive
-                if client_risk in ["Conservative", "Balanced"]:
-                    # SCN is restricted for Conservative/Balanced
-                    match_rule = df[df['rule_id'] == 'RULE-016']
-                    if not match_rule.empty:
-                        rule = match_rule.iloc[0]
-                        violations.append(rule['rule_id'])
-                        reasons.append(f"{rule['rule_id']}: {rule['condition']}")
-                        citations.append("CMP-002 (RULE-016)")
-                        
-                # Check RULE-003: Max 15% of total portfolio in single structured product issuer / structured notes
-                if total_val > 0:
-                    pct = (allocation_amount / total_val) * 100
-                    if pct > 15:
-                        match_rule = df[df['rule_id'] == 'RULE-003']
+        holdings = client["holdings"]
+        total_val = sum(h["allocation_amount"] for h in holdings) + allocation_amount
+        
+        if os.path.exists(CMP002_CSV_PATH):
+            try:
+                df = pd.read_csv(CMP002_CSV_PATH)
+                if "SCN" in product_code or product["product_category"] == "Structured Product":
+                    if client_risk in ["Conservative", "Balanced"]:
+                        match_rule = df[df['rule_id'] == 'RULE-016']
                         if not match_rule.empty:
                             rule = match_rule.iloc[0]
                             violations.append(rule['rule_id'])
-                            reasons.append(f"{rule['rule_id']}: Allocation of {pct:.1f}% exceeds 15% structured product cap.")
-                            citations.append("CMP-002 (RULE-003)")
+                            reasons.append(f"{rule['rule_id']}: {rule['condition']}")
+                            citations.append("CMP-002 (RULE-016)")
                             
-            # - Single Sector Concentration check (RULE-002 / RULE-011 / RULE-012)
-            # e.g. technology sector limit 25%. If client holds tech ETF and we add more, check aggregate.
-            # In our mock client database, we can check.
+                    if total_val > 0:
+                        pct = (allocation_amount / total_val) * 100
+                        if pct > 15:
+                            match_rule = df[df['rule_id'] == 'RULE-003']
+                            if not match_rule.empty:
+                                rule = match_rule.iloc[0]
+                                violations.append(rule['rule_id'])
+                                reasons.append(f"{rule['rule_id']}: Allocation of {pct:.1f}% exceeds 15% structured product cap.")
+                                citations.append("CMP-002 (RULE-003)")
+            except Exception as e:
+                print(f"Error checking suitability CSV: {e}")
+                
+        if any(v in ["RULE-016", "INCOMPATIBLE_RISK_PROFILE"] for v in violations):
+            status = "Blocked"
+        elif violations:
+            status = "Needs Review"
+        else:
+            status = "Cleared"
             
-            # - General licensing check (RULE-036/037/038/041)
-            # If the recommendation involves tax, legal, insurance, or discretionary management, we must note it.
-            
-        except Exception as e:
-            print(f"Error checking suitability CSV: {e}")
-            
-    # Determine Status
-    if any(v in ["RULE-016", "INCOMPATIBLE_RISK_PROFILE"] for v in violations):
-        status = "Blocked"
-    elif violations:
-        status = "Needs Review"
-    else:
-        status = "Cleared"
-        
-    return {
-        "status": status,
-        "violations": violations,
-        "reasons": reasons,
-        "citations": list(set(citations))
-    }
+        return {
+            "status": status,
+            "violations": violations,
+            "reasons": reasons,
+            "citations": list(set(citations))
+        }
 
-def rag_retriever(query: str, rm_research_tier: int = 1):
+    # Retrieve all compliance documents from Chroma DB using semantic search
+    try:
+        embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
+        db = Chroma(
+            persist_directory=PERSIST_DIR,
+            embedding_function=embeddings,
+            collection_name=COLLECTION_NAME
+        )
+        
+        # Build semantic search query based on doc type, risk profile, and category details
+        search_query = f"compliance restriction rules, concentration limits, and suitability caps for {client_risk} risk profile client buying {product_code} ({product.get('product_category')})"
+        results = db.similarity_search(search_query, k=40, filter={"type": "compliance"})
+        
+        unique_rules = {}
+        other_policy_chunks = []
+        seen_contents = set()
+        
+        for doc in results:
+            text = doc.page_content
+            match_rule = re.search(r'rule_id:\s*(RULE-\d+)', text)
+            if match_rule:
+                rule_id = match_rule.group(1)
+                unique_rules[rule_id] = text
+            else:
+                if text not in seen_contents:
+                    seen_contents.add(text)
+                    other_policy_chunks.append(text)
+                    
+        rules_context = "\n\n".join(unique_rules.values())
+        policy_context = "\n\n".join(other_policy_chunks)
+        
+        # Pre-calculate portfolio statistics to prevent LLM math mistakes
+        current_portfolio_value = sum(h["allocation_amount"] for h in client["holdings"])
+        new_portfolio_value = current_portfolio_value + allocation_amount
+        proposed_concentration_pct = (allocation_amount / new_portfolio_value * 100) if new_portfolio_value > 0 else 0.0
+        
+        holdings_lines = []
+        for h in client["holdings"]:
+            holdings_lines.append(f"- {h['product_name']} ({h['product_code']}): USD {h['allocation_amount']:,} [{h['asset_class']}]")
+        holdings_text = "\n".join(holdings_lines)
+        
+        prompt = f"""
+        You are the Compliance and Suitability Engine for Horizon Wealth Management.
+        Your task is to evaluate a proposed transaction against the client's profile and the retrieved compliance rules and guidelines.
+
+        === PROPOSED TRANSACTION ===
+        - Client ID: {client_id}
+        - Client Name: {client.get('name')}
+        - Client Risk Profile: {client_risk}
+        - Product Code to Buy: {product_code}
+        - Product Name: {product.get('product_name')}
+        - Product Category: {product.get('product_category')}
+        - Product Risk Rating: {product.get('risk_rating')}
+        - Suitable Risk Profiles for Product: {product.get('suitable_risk_profiles')}
+        - Proposed Allocation Amount: USD {allocation_amount:,.2f}
+
+        === CLIENT PORTFOLIO STATS (PRE-CALCULATED) ===
+        - Total Current Holdings Value: USD {current_portfolio_value:,.2f}
+        - New Total Portfolio Value (including proposed allocation): USD {new_portfolio_value:,.2f}
+        - Proposed Product Concentration in Portfolio: {proposed_concentration_pct:.2f}%
+        
+        === CLIENT CURRENT HOLDINGS ===
+        {holdings_text}
+
+        === RETRIEVED COMPLIANCE RULES & GUIDELINES ===
+        {rules_context}
+        {policy_context}
+
+        === EVALUATION INSTRUCTIONS ===
+        For each retrieved rule or policy:
+        1. **Check Applicability**:
+           - Does the rule apply to this product code, name, or category? (For example, rules about Structured Products or SCNs only apply if the product category is "Structured Product" or the code contains "SCN").
+           - Does the rule apply to this client or transaction type?
+
+        2. **Evaluate Violations**:
+           - **Risk Profile Compatibility**:
+             - Check if the client's risk profile ('{client_risk}') is compatible with the product. The product's suitable risk profiles are '{product.get('suitable_risk_profiles')}'. If the client's risk profile is not in the suitable list, add 'INCOMPATIBLE_RISK_PROFILE' to violations.
+             - Also check if any retrieved profile restriction rules apply (e.g. if a retrieved rule says Structured Capital Notes (SCN series) require a Growth or Aggressive profile, check if the client risk profile is Conservative or Balanced. If it is, the trade is Blocked. You must add the corresponding rule ID (e.g. 'RULE-016') and 'INCOMPATIBLE_RISK_PROFILE' to the violations list).
+           - **Concentration Limits**:
+             - If a concentration limit rule applies (e.g. a rule with concentration cap like RULE-003 structured note concentration cap), check if the pre-calculated concentration ({proposed_concentration_pct:.2f}%) exceeds the percentage limit specified in the rule (for RULE-003, the limit is 15.0%). If it does, add the corresponding rule ID (e.g. 'RULE-003') to violations.
+
+        3. **Determine Overall Status**:
+           - "Blocked": If any rule is violated that represents a hard block (e.g. INCOMPATIBLE_RISK_PROFILE or profile restriction rule like RULE-016).
+           - "Needs Review": If any concentration limit or review rules are violated (e.g. RULE-003 concentration breach), but no hard blocks are violated.
+           - "Cleared": If no compliance rules or suitability limits are violated.
+
+        4. **Format Output**:
+           - `status`: One of "Cleared", "Needs Review", "Blocked".
+           - `violations`: List of rule IDs violated (e.g., ['RULE-016', 'INCOMPATIBLE_RISK_PROFILE'] or ['RULE-003']). Return empty list [] if no rules are violated.
+           - `reasons`: Detailed explanation for each violation or why it passed, showing calculations for concentration percentages.
+           - `citations`: List cited rules as 'CMP-002 (RULE-XXX)' (e.g. 'CMP-002 (RULE-016)') or '[product_code] Product Guide' (e.g. '{product_code} Product Guide').
+
+        Perform the evaluation and output the structured result.
+        """
+        
+        class SuitabilityReport(BaseModel):
+            status: Literal["Cleared", "Needs Review", "Blocked"]
+            violations: List[str] = Field(description="List of rule IDs violated (e.g. ['RULE-016', 'INCOMPATIBLE_RISK_PROFILE'] or ['RULE-003']). Return empty list [] if no rules are violated.")
+            reasons: List[str] = Field(description="Detailed reasons explaining why each rule was violated or passed, including percentage calculations for concentration rules.")
+            citations: List[str] = Field(description="List of cited documents or rules, e.g. ['CMP-002 (RULE-016)', 'PG-001 Product Guide'].")
+            
+        llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.0)
+        structured_llm = llm.with_structured_output(SuitabilityReport)
+        report = structured_llm.invoke(prompt)
+        
+        return {
+            "status": report.status,
+            "violations": report.violations,
+            "reasons": report.reasons,
+            "citations": list(set(report.citations))
+        }
+    except Exception as e:
+        print(f"LLM Suitability Checker error, falling back to programmatic check: {e}")
+        return programmatic_fallback()
+
+def rag_retriever(query: str, rm_access_to_private: bool = False):
     """
     Vector database retriever with metadata filtering for RM entitlement,
     fully dynamic without hardcoded document IDs or keyword maps in python.
-    rm_research_tier:
-      - 1: Public documents only
-      - 2: Public + Restricted documents
+    rm_access_to_private:
+      - False: Public documents only
+      - True: Public + Restricted documents
     """
     embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
     db = Chroma(
@@ -210,9 +313,9 @@ def rag_retriever(query: str, rm_research_tier: int = 1):
         doc_sensitivity = doc.metadata.get("sensitivity", "Public")
         
         # Gating rule: only restrict 'Restricted' documents of type 'research' or starting with 'RN-'
-        # from Tier-1 RMs. Compliance policies (CMP) and Product Guides (PG) remain accessible.
+        # from RMs without private access. Compliance policies (CMP) and Product Guides (PG) remain accessible.
         is_restricted_research = (doc_sensitivity == "Restricted") and (doc_type == "research" or doc_id.upper().startswith("RN-"))
-        if rm_research_tier == 1 and is_restricted_research:
+        if not rm_access_to_private and is_restricted_research:
             continue
             
         retrieved_doc_ids.add(doc_id)
@@ -261,7 +364,7 @@ def rag_retriever(query: str, rm_research_tier: int = 1):
             
             # Gating rule check for fallback chunks
             is_restricted_research = (doc_sensitivity == "Restricted") and (doc_type == "research" or doc_id.upper().startswith("RN-"))
-            if rm_research_tier == 1 and is_restricted_research:
+            if not rm_access_to_private and is_restricted_research:
                 continue
                 
             formatted_results.append({

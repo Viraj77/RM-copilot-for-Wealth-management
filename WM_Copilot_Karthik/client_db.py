@@ -7,6 +7,7 @@ CLIENT_DB = {
         "risk_profile": "Balanced",
         "rm_name": "John Doe",
         "rm_research_tier": 2,  # Entitled to Restricted (Tier 2) research like RN-002
+        "rm_access_to_private": True,
         "holdings": [
             {
                 "product_code": "PG-001",
@@ -28,6 +29,7 @@ CLIENT_DB = {
         "risk_profile": "Conservative",
         "rm_name": "Jane Smith",
         "rm_research_tier": 1,  # Entitled to Public (Tier 1) research only
+        "rm_access_to_private": False,
         "holdings": [
             {
                 "product_code": "PG-002",
@@ -49,6 +51,7 @@ CLIENT_DB = {
         "risk_profile": "Aggressive",
         "rm_name": "John Doe",
         "rm_research_tier": 2,
+        "rm_access_to_private": True,
         "holdings": [
             {
                 "product_code": "PG-003",

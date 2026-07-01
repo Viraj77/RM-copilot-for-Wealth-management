@@ -154,10 +154,10 @@ def gather_research_node(state: AgentState) -> Dict[str, Any]:
     Uses metadata filtering based on RM's entitlement level.
     """
     client_profile = state.get("client_profile")
-    # Default to tier 1 (Public only) if no client/RM is loaded
-    rm_tier = 1
+    # Default to False (Public only) if no client/RM is loaded
+    rm_access = False
     if client_profile:
-        rm_tier = client_profile.get("rm_research_tier", 1)
+        rm_access = client_profile.get("rm_access_to_private", False)
         
     query = state["query"]
     
@@ -168,7 +168,7 @@ def gather_research_node(state: AgentState) -> Dict[str, Any]:
     if state.get("product_code"):
         search_query += f" product: {state.get('product_code')}"
         
-    evidence = rag_retriever(search_query, rm_research_tier=rm_tier)
+    evidence = rag_retriever(search_query, rm_access_to_private=rm_access)
     
     # Add product details directly if product code is queried
     if state.get("product_code"):
