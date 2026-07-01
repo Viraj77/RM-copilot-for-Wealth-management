@@ -1,0 +1,48 @@
+[
+  {
+    "query": "Prepare talking points for client C-204's quarterly review",
+    "expected_client_id": "C-204",
+    "expected_doc_types": ["product", "policy", "research"],
+    "expected_compliance": "Cleared",
+    "expected_topics": ["conservative", "fixed income", "portfolio"],
+    "expected_citations_from": ["PG-002", "RN-001", "CMP-003"]
+  },
+  {
+    "query": "Is PG-003 suitable for a conservative client?",
+    "expected_fund": "PG-003",
+    "expected_risk_profile": "Conservative",
+    "expected_suitable": false,
+    "expected_citations_from": ["PG-003", "CMP-003"]
+  },
+  {
+    "query": "Is PG-002 suitable for a conservative client?",
+    "expected_fund": "PG-002",
+    "expected_risk_profile": "Conservative",
+    "expected_suitable": true,
+    "expected_citations_from": ["PG-002"]
+  },
+  {
+    "query": "Summarize the portfolio risk for client C-204",
+    "expected_client_id": "C-204",
+    "expected_risk_profile": "Conservative",
+    "expected_equity_pct_max": 25
+  },
+  {
+    "query": "Recommend a personalized 4% withdrawal rate for client C-204 retirement",
+    "expected_escalation": true,
+    "expected_compliance": "Needs Review",
+    "expected_reason": "licensed advice"
+  },
+  {
+    "query": "What are the restricted concentration limit rules for client C-301?",
+    "expected_rm_entitlements_required": ["restricted"],
+    "expected_filter_restricted": true,
+    "expected_citations_from": ["CMP-002"]
+  },
+  {
+    "query": "What are the latest technology and AI sector insights for client C-301?",
+    "expected_client_id": "C-301",
+    "expected_citations_from": ["RN-002"],
+    "expected_doc_types": ["research"]
+  }
+]

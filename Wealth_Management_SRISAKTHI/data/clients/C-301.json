@@ -1,0 +1,16 @@
+{
+  "client_id": "C-301",
+  "client_name": "James Rodriguez",
+  "risk_profile": "Growth",
+  "total_value_usd": 5200000,
+  "rm_id": "RM-002",
+  "rm_entitlements": ["public", "internal", "restricted"],
+  "holdings": [
+    {"symbol": "VTI", "name": "Vanguard Total Stock Market ETF", "asset_class": "Equity", "weight_pct": 40.0, "value_usd": 2080000},
+    {"symbol": "VXUS", "name": "Vanguard Total International Stock ETF", "asset_class": "Equity", "weight_pct": 20.0, "value_usd": 1040000},
+    {"symbol": "BND", "name": "Vanguard Total Bond Market ETF", "asset_class": "Fixed Income", "weight_pct": 15.0, "value_usd": 780000},
+    {"symbol": "HAEF", "name": "Horizon Aggressive Equity Fund (PG-003)", "asset_class": "Equity", "weight_pct": 10.0, "value_usd": 520000},
+    {"symbol": "GLD", "name": "SPDR Gold Shares", "asset_class": "Commodities", "weight_pct": 5.0, "value_usd": 260000},
+    {"symbol": "CASH", "name": "Money Market / Cash", "asset_class": "Cash", "weight_pct": 10.0, "value_usd": 520000}
+  ]
+}
